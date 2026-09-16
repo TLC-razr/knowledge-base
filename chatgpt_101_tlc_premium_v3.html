@@ -1,0 +1,2695 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" id="themeColorMeta" content="#f4f7fb">
+<script>
+(function(){try{var k="tlc_chatgpt101_theme_v3";var s=localStorage.getItem(k);var t=s||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme="light";}})();
+</script>
+<title>ChatGPT 101 для сотрудников ТЛЦ</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --surface: rgba(255,255,255,.94);
+  --surface-strong: #ffffff;
+  --surface-soft: #f8fbff;
+  --text: #142033;
+  --muted: #667085;
+  --muted-2: #8792a5;
+  --line: #e3eaf3;
+  --primary: #2456d6;
+  --primary-2: #5b7cff;
+  --primary-soft: #edf3ff;
+  --cyan: #0d9488;
+  --cyan-soft: #eafaf7;
+  --green: #15803d;
+  --green-soft: #edf9f0;
+  --amber: #b45309;
+  --amber-soft: #fff7e8;
+  --red: #b42318;
+  --red-soft: #fff1f0;
+  --shadow-xs: 0 1px 2px rgba(16,24,40,.04);
+  --shadow-sm: 0 8px 24px rgba(19,36,64,.06);
+  --shadow-md: 0 18px 48px rgba(19,36,64,.10);
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 26px;
+  --sidebar: 292px;
+  --topbar: 72px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 8% -5%, rgba(91,124,255,.13), transparent 28rem),
+    radial-gradient(circle at 92% 7%, rgba(13,148,136,.09), transparent 28rem),
+    var(--bg);
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  line-height: 1.58;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea { font: inherit; }
+button { color: inherit; }
+::selection { background: #dfe8ff; color: #173271; }
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -48px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #111827;
+  color: #fff;
+  text-decoration: none;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 12px; }
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--topbar);
+  border-bottom: 1px solid rgba(227,234,243,.9);
+  background: rgba(255,255,255,.84);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+.topbar-inner {
+  width: min(1540px, 100%);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: var(--sidebar) minmax(0,1fr) auto;
+  align-items: center;
+  gap: 22px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  background: linear-gradient(145deg, var(--primary), #193b9d);
+  box-shadow: 0 8px 18px rgba(36,86,214,.25);
+}
+.brand-copy { min-width: 0; }
+.brand-title {
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+.brand-subtitle {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.top-progress { min-width: 0; }
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.progress-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eaf0f8;
+}
+.progress-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary), var(--cyan));
+  transition: width .35s ease;
+}
+.top-actions { display: flex; gap: 8px; }
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--shadow-xs);
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.icon-btn:hover { transform: translateY(-1px); border-color: #c8d5e8; background: #fff; }
+.icon-btn:focus-visible, .btn:focus-visible, .copy-btn:focus-visible, .nav-link:focus-visible,
+.accordion-btn:focus-visible, .filter-btn:focus-visible, .choice:focus-within {
+  outline: 3px solid rgba(36,86,214,.18);
+  outline-offset: 2px;
+}
+
+/* Shell */
+.shell {
+  width: min(1540px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--sidebar) minmax(0,1fr);
+}
+.sidebar {
+  position: sticky;
+  top: var(--topbar);
+  height: calc(100vh - var(--topbar));
+  padding: 24px 18px 34px;
+  overflow: auto;
+  border-right: 1px solid var(--line);
+  background: rgba(255,255,255,.76);
+  backdrop-filter: blur(14px);
+}
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 8px 14px;
+}
+.sidebar-kicker {
+  color: var(--muted-2);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.sidebar-count {
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 850;
+}
+.nav { display: grid; gap: 4px; }
+.nav-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px minmax(0,1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 8px 10px;
+  border-radius: 13px;
+  color: #5d697c;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+.nav-link:hover { background: #f2f6fc; color: #2d3f59; transform: translateX(2px); }
+.nav-link.active { background: var(--primary-soft); color: var(--primary); }
+.nav-link.active::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  width: 3px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--primary);
+}
+.nav-num {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #6f7b8d;
+  background: #eef2f7;
+  font-size: 11px;
+  font-weight: 900;
+  transition: background .18s ease, color .18s ease;
+}
+.nav-link.done .nav-num { background: var(--green-soft); color: var(--green); }
+.nav-status {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #d8e0eb;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: transparent;
+  font-size: 11px;
+}
+.nav-link.done .nav-status { border-color: #b9e0c5; color: var(--green); background: var(--green-soft); }
+.sidebar-tip {
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #dbe5f6;
+  background: linear-gradient(145deg, #f7faff, #eef5ff);
+  color: #536177;
+  font-size: 12px;
+}
+.sidebar-tip strong { display: block; margin-bottom: 5px; color: #31405a; }
+
+.main {
+  min-width: 0;
+  padding: 38px clamp(22px, 4vw, 64px) 110px;
+}
+.content-wrap { max-width: 1080px; margin: 0 auto; }
+
+/* Hero */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #dce6f4;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(91,124,255,.20), transparent 30%),
+    radial-gradient(circle at 65% 90%, rgba(13,148,136,.12), transparent 27%),
+    linear-gradient(145deg, rgba(255,255,255,.98), rgba(244,249,255,.96));
+  box-shadow: var(--shadow-md);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.25fr) minmax(280px,.75fr);
+  align-items: stretch;
+}
+.hero-copy { padding: clamp(30px, 5vw, 62px); }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 11px;
+  border: 1px solid #d7e2fb;
+  border-radius: 999px;
+  background: rgba(237,243,255,.88);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 5px rgba(13,148,136,.10);
+}
+.hero h1 {
+  margin: 22px 0 16px;
+  max-width: 780px;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.01;
+  letter-spacing: -.055em;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, var(--primary), #6d57e9 55%, var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-lead {
+  max-width: 760px;
+  margin: 0;
+  color: #5e6b7f;
+  font-size: clamp(16px, 2vw, 20px);
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 26px;
+}
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid #dfe7f2;
+  border-radius: 999px;
+  background: rgba(255,255,255,.82);
+  color: #536177;
+  font-size: 12px;
+  font-weight: 800;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.hero-side {
+  min-height: 100%;
+  padding: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(220,230,244,.9);
+  background: rgba(247,250,255,.58);
+}
+.roadmap-card {
+  width: min(360px, 100%);
+  padding: 22px;
+  border: 1px solid #dce6f4;
+  border-radius: 22px;
+  background: rgba(255,255,255,.88);
+  box-shadow: var(--shadow-sm);
+}
+.roadmap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.roadmap-title { font-weight: 900; letter-spacing: -.02em; }
+.roadmap-badge {
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: var(--cyan);
+  background: var(--cyan-soft);
+  font-size: 11px;
+  font-weight: 900;
+}
+.roadmap { display: grid; gap: 8px; }
+.roadmap-item {
+  display: grid;
+  grid-template-columns: 28px minmax(0,1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 10px 11px;
+  border-radius: 12px;
+  background: #f7f9fc;
+  color: #59687d;
+  font-size: 12px;
+  font-weight: 750;
+}
+.roadmap-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #fff;
+  border: 1px solid #e5ebf4;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 850;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), #3d68df);
+  box-shadow: 0 10px 24px rgba(36,86,214,.20);
+}
+.btn-primary:hover { box-shadow: 0 13px 30px rgba(36,86,214,.27); }
+.btn-secondary {
+  color: #405069;
+  background: rgba(255,255,255,.88);
+  border-color: #dce5f1;
+}
+.btn-secondary:hover { border-color: #c9d7ea; background: #fff; }
+
+/* Sections */
+.lesson {
+  scroll-margin-top: calc(var(--topbar) + 24px);
+  margin-top: 62px;
+}
+.lesson-header {
+  display: grid;
+  grid-template-columns: 54px minmax(0,1fr) auto;
+  align-items: start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.lesson-num {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  color: #fff;
+  background: linear-gradient(145deg, var(--primary), #3b67dc);
+  box-shadow: 0 10px 22px rgba(36,86,214,.18);
+  font-weight: 950;
+  letter-spacing: -.04em;
+}
+.lesson-title-wrap { min-width: 0; }
+.lesson-kicker {
+  margin-bottom: 5px;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.lesson h2 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.lesson-intro {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+.lesson-time {
+  margin-top: 3px;
+  padding: 7px 10px;
+  border: 1px solid #e0e7f0;
+  border-radius: 999px;
+  background: rgba(255,255,255,.76);
+  color: #718096;
+  font-size: 11px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+.lesson-body {
+  display: grid;
+  gap: 16px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+}
+.card-pad { padding: clamp(18px, 2.6vw, 26px); }
+.card h3 { margin: 0 0 8px; font-size: 17px; letter-spacing: -.02em; }
+.card p { margin: 0; color: var(--muted); }
+.grid-2, .grid-3, .grid-4 { display: grid; gap: 14px; }
+.grid-2 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.grid-3 { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.grid-4 { grid-template-columns: repeat(4,minmax(0,1fr)); }
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 152px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--shadow-xs);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.feature-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: #d4dfed; }
+.feature-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 13px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 20px;
+}
+.feature-card h3 { margin: 0 0 5px; font-size: 16px; }
+.feature-card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.callout {
+  display: grid;
+  grid-template-columns: 38px minmax(0,1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid;
+}
+.callout-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  font-size: 18px;
+}
+.callout strong { display: block; margin-bottom: 3px; }
+.callout p { margin: 0; font-size: 14px; }
+.callout.info { border-color: #d8e4fb; background: var(--primary-soft); }
+.callout.info .callout-icon { color: var(--primary); background: #fff; }
+.callout.success { border-color: #cfe9d7; background: var(--green-soft); }
+.callout.success .callout-icon { color: var(--green); background: #fff; }
+.callout.warn { border-color: #f1ddb9; background: var(--amber-soft); }
+.callout.warn .callout-icon { color: var(--amber); background: #fff; }
+.callout.danger { border-color: #f0cfcc; background: var(--red-soft); }
+.callout.danger .callout-icon { color: var(--red); background: #fff; }
+
+/* Prompt cards */
+.prompt {
+  overflow: hidden;
+  border: 1px solid #dce5f0;
+  border-radius: 16px;
+  background: #f9fbfe;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+}
+.prompt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 10px 15px;
+  border-bottom: 1px solid #e5ebf3;
+  background: rgba(255,255,255,.90);
+}
+.prompt-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #66758a;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.prompt-label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+.prompt pre {
+  margin: 0;
+  padding: 18px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #26364d;
+  font: 500 14px/1.64 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+.copy-btn {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid #dce5f2;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.copy-btn:hover { background: var(--primary-soft); border-color: #ccd9f0; transform: translateY(-1px); }
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 14px;
+}
+.compare-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 165px;
+  padding: 20px;
+  border-radius: 17px;
+  border: 1px solid;
+}
+.compare-card.bad { border-color: #f0d4d1; background: linear-gradient(145deg,#fff7f6,#fff1f0); }
+.compare-card.good { border-color: #cfe7d7; background: linear-gradient(145deg,#f8fff9,#edf9f0); }
+.compare-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.bad .compare-label { color: var(--red); background: #fff; }
+.good .compare-label { color: var(--green); background: #fff; }
+.compare-text { margin-top: 13px; color: #34445b; font-size: 14px; }
+
+.accordion {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(255,255,255,.88);
+}
+.accordion-btn {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-weight: 850;
+  cursor: pointer;
+}
+.accordion-btn:hover { background: #fafcff; }
+.accordion-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #f0f4f9;
+  color: #6c7788;
+  transition: transform .22s ease;
+}
+.accordion.open .accordion-icon { transform: rotate(45deg); }
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .25s ease;
+}
+.accordion.open .accordion-content { grid-template-rows: 1fr; }
+.accordion-inner { min-height: 0; overflow: hidden; }
+.accordion-inner > div { padding: 0 16px 16px; color: var(--muted); font-size: 14px; }
+
+/* Interactive formula */
+.formula-strip {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 10px;
+}
+.formula-box {
+  min-height: 118px;
+  padding: 16px;
+  border: 1px solid #d9e4f3;
+  border-radius: 16px;
+  background: linear-gradient(145deg,#fff,#f7faff);
+}
+.formula-index {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 13px;
+  border-radius: 9px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+}
+.formula-box strong { display: block; color: #2c3c55; font-size: 14px; }
+.formula-box span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+.builder {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 14px;
+}
+.builder-fields { display: grid; gap: 10px; }
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  color: #516078;
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.field textarea {
+  width: 100%;
+  min-height: 76px;
+  resize: vertical;
+  padding: 12px 13px;
+  border: 1px solid #d9e3ef;
+  border-radius: 12px;
+  background: #fbfdff;
+  color: var(--text);
+  outline: none;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.field textarea:focus { border-color: #99b2ef; box-shadow: 0 0 0 4px rgba(36,86,214,.08); background: #fff; }
+.builder-preview {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 18px;
+  border: 1px solid #dce5f1;
+  border-radius: 16px;
+  background: linear-gradient(145deg,#f9fbff,#f5f9ff);
+}
+.builder-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.builder-preview-title { font-size: 12px; font-weight: 900; color: #5a6880; text-transform: uppercase; letter-spacing: .05em; }
+.builder-output {
+  flex: 1;
+  margin: 0;
+  white-space: pre-wrap;
+  color: #2a3a51;
+  font-size: 14px;
+}
+
+/* Practice */
+.practice {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border: 1px dashed #b8cbea;
+  border-radius: 18px;
+  background: linear-gradient(145deg,#f9fbff,#f1f6ff);
+}
+.practice::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(91,124,255,.07);
+}
+.practice-title { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; color: var(--primary); font-weight: 900; }
+.practice p { position: relative; z-index: 1; margin: 0; color: #58667a; font-size: 14px; }
+
+.lesson-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+.lesson-done {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #cdd9ea;
+  border-radius: 12px;
+  background: rgba(255,255,255,.90);
+  color: var(--primary);
+  font-weight: 850;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.lesson-done:hover { transform: translateY(-1px); border-color: #b9c9e1; background: #fff; }
+.lesson-done.done { color: var(--green); border-color: #b8dfc4; background: var(--green-soft); }
+.lesson-next { color: var(--muted); font-size: 12px; }
+.lesson-next a { color: var(--primary); text-decoration: none; font-weight: 850; }
+
+/* Quick command chips */
+.command-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.command-chip {
+  min-height: 72px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.command-chip:hover { transform: translateY(-2px); border-color: #cbd9ec; box-shadow: var(--shadow-sm); }
+.command-chip strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.command-chip span { color: var(--muted); font-size: 11px; }
+
+/* Formats */
+.format-picker { display: grid; grid-template-columns: 210px minmax(0,1fr); gap: 14px; }
+.format-list { display: grid; gap: 8px; align-content: start; }
+.filter-btn {
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: #55647a;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.filter-btn.active { color: var(--primary); border-color: #cbd8f0; background: var(--primary-soft); }
+.format-preview {
+  padding: 18px;
+  border: 1px solid #dce5f0;
+  border-radius: 16px;
+  background: #f9fbfe;
+}
+.format-preview h4 { margin: 0 0 10px; font-size: 13px; }
+.format-preview pre { margin: 0; white-space: pre-wrap; color: #324258; font: 500 13px/1.6 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+
+/* Safety */
+.safety-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.safety-card { padding: 18px; border-radius: 16px; border: 1px solid; }
+.safety-card h3 { margin: 0 0 7px; font-size: 15px; }
+.safety-card ul { margin: 0; padding-left: 18px; color: #5e6b7f; font-size: 13px; }
+.safety-card.green { border-color: #cfe8d7; background: var(--green-soft); }
+.safety-card.amber { border-color: #f0ddb9; background: var(--amber-soft); }
+.safety-card.red { border-color: #f0cfcc; background: var(--red-soft); }
+
+/* Use cases */
+.usecase-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.usecase-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.usecase-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: var(--shadow-xs);
+}
+.usecase-card.hidden { display: none; }
+.usecase-top { display: flex; align-items: flex-start; gap: 12px; }
+.usecase-icon { width: 40px; height: 40px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 12px; background: var(--primary-soft); font-size: 19px; }
+.usecase-title { margin: 0; font-size: 16px; }
+.usecase-desc { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+.usecase-tag { display: inline-flex; width: max-content; padding: 4px 7px; border-radius: 999px; background: #f1f4f8; color: #718096; font-size: 10px; font-weight: 850; text-transform: uppercase; letter-spacing: .04em; }
+
+/* Quiz */
+.quiz-shell { display: grid; gap: 14px; }
+.question {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: rgba(255,255,255,.94);
+}
+.question-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.question-index {
+  min-width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 900;
+}
+.question h3 { margin: 0; font-size: 16px; line-height: 1.35; }
+.choices { display: grid; gap: 8px; margin-top: 14px; }
+.choice {
+  display: grid;
+  grid-template-columns: 20px minmax(0,1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 9px 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fbfcfe;
+  color: #4d5b70;
+  cursor: pointer;
+  font-size: 13px;
+  transition: border-color .18s ease, background .18s ease;
+}
+.choice:hover { border-color: #cfdbea; background: #fff; }
+.choice input { accent-color: var(--primary); }
+.question.correct { border-color: #bfe0c8; background: #fbfffc; }
+.question.wrong { border-color: #efcfcc; background: #fffafa; }
+.feedback { display: none; margin-top: 12px; padding: 10px 12px; border-radius: 11px; font-size: 12px; }
+.question.correct .feedback { display: block; color: var(--green); background: var(--green-soft); }
+.question.wrong .feedback { display: block; color: var(--red); background: var(--red-soft); }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+.quiz-result {
+  display: none;
+  grid-template-columns: 112px minmax(0,1fr);
+  gap: 20px;
+  align-items: center;
+  padding: 22px;
+  border: 1px solid #d8e4fb;
+  border-radius: 18px;
+  background: linear-gradient(145deg,#f7faff,#eef4ff);
+}
+.quiz-result.show { display: grid; }
+.score-ring {
+  --score: 0;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--primary) calc(var(--score) * 1%), #e4eaf3 0);
+  position: relative;
+}
+.score-ring::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+.score-ring strong { position: relative; z-index: 1; font-size: 24px; letter-spacing: -.04em; }
+.result-copy h3 { margin: 0 0 5px; }
+.result-copy p { margin: 0; color: var(--muted); font-size: 13px; }
+
+/* Finish */
+.finish-card {
+  margin-top: 24px;
+  padding: 26px;
+  border: 1px solid #d9e4f7;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(13,148,136,.10), transparent 28%),
+    linear-gradient(145deg,#ffffff,#f4f8ff);
+  box-shadow: var(--shadow-sm);
+}
+.finish-card h3 { margin: 0 0 8px; font-size: 24px; letter-spacing: -.035em; }
+.finish-card p { margin: 0; color: var(--muted); }
+
+.footer {
+  margin-top: 70px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer strong { color: #3f4e63; }
+
+.toast {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  bottom: 26px;
+  transform: translate(-50%, 18px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: #fff;
+  background: #182235;
+  box-shadow: 0 14px 34px rgba(10,20,35,.24);
+  font-size: 12px;
+  font-weight: 800;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.mobile-jump { display: none; }
+
+@media (max-width: 1160px) {
+  :root { --sidebar: 252px; }
+  .topbar-inner { grid-template-columns: var(--sidebar) minmax(0,1fr) auto; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-side { border-left: 0; border-top: 1px solid rgba(220,230,244,.9); }
+  .roadmap-card { width: 100%; }
+  .formula-strip, .grid-4 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 900px) {
+  :root { --topbar: 64px; }
+  .topbar-inner { grid-template-columns: auto minmax(0,1fr) auto; padding: 0 14px; gap: 12px; }
+  .brand-subtitle { display: none; }
+  .sidebar { display: none; }
+  .shell { grid-template-columns: 1fr; }
+  .main { padding: 24px 15px 90px; }
+  .mobile-jump {
+    display: block;
+    position: sticky;
+    top: calc(var(--topbar) + 8px);
+    z-index: 50;
+    margin-bottom: 16px;
+  }
+  .mobile-jump select {
+    width: 100%;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid #d9e3ef;
+    border-radius: 12px;
+    background: rgba(255,255,255,.92);
+    color: #42516a;
+    box-shadow: var(--shadow-xs);
+  }
+  .builder, .format-picker { grid-template-columns: 1fr; }
+  .command-grid, .grid-3, .safety-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 680px) {
+  .top-progress .progress-row span:first-child { display: none; }
+  .hero-copy { padding: 28px 20px; }
+  .hero-side { padding: 18px; }
+  .hero h1 { font-size: clamp(39px, 13vw, 58px); }
+  .lesson { margin-top: 48px; }
+  .lesson-header { grid-template-columns: 48px minmax(0,1fr); }
+  .lesson-num { width: 48px; height: 48px; border-radius: 15px; }
+  .lesson-time { display: none; }
+  .grid-2, .grid-3, .grid-4, .formula-strip, .compare, .command-grid, .safety-grid, .usecase-grid { grid-template-columns: 1fr; }
+  .lesson-footer { align-items: stretch; flex-direction: column; }
+  .lesson-next { text-align: right; }
+  .quiz-result { grid-template-columns: 1fr; }
+  .score-ring { margin: 0 auto; }
+  #printBtn { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+@media print {
+  body { background: #fff; }
+  .topbar, .sidebar, .mobile-jump, .lesson-footer, .hero-actions, .copy-btn, .quiz-actions, .top-actions { display: none !important; }
+  .shell { display: block; }
+  .main { padding: 0; }
+  .hero, .card, .question, .usecase-card { box-shadow: none; }
+  .lesson { break-inside: avoid; }
+}
+
+
+/* =========================================================
+   VISUAL SYSTEM V3 + DARK THEME
+   ========================================================= */
+:root {
+  --bg-deep: #eef3fa;
+  --glass: rgba(255,255,255,.76);
+  --glass-strong: rgba(255,255,255,.92);
+  --card-glow: rgba(36,86,214,.10);
+  --text-soft: #506078;
+  --ring: rgba(36,86,214,.22);
+  --hero-grid-line: rgba(36,86,214,.055);
+  --hero-shine: rgba(255,255,255,.78);
+  --surface-hover: #ffffff;
+  --code-surface: #f7faff;
+  --elevated-border: rgba(211,221,235,.92);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1020;
+  --bg-deep: #070b15;
+  --surface: rgba(17,25,43,.90);
+  --surface-strong: #131c2f;
+  --surface-soft: #111a2c;
+  --text: #f1f5ff;
+  --text-soft: #aebad0;
+  --muted: #99a7bd;
+  --muted-2: #738198;
+  --line: #26324a;
+  --primary: #7da2ff;
+  --primary-2: #9b8cff;
+  --primary-soft: rgba(84,126,244,.14);
+  --cyan: #48d7c9;
+  --cyan-soft: rgba(49,201,185,.12);
+  --green: #6dd58c;
+  --green-soft: rgba(58,174,93,.13);
+  --amber: #f3b35f;
+  --amber-soft: rgba(208,133,43,.13);
+  --red: #ff8f88;
+  --red-soft: rgba(215,72,62,.13);
+  --shadow-xs: 0 1px 2px rgba(0,0,0,.20);
+  --shadow-sm: 0 12px 28px rgba(0,0,0,.24);
+  --shadow-md: 0 24px 70px rgba(0,0,0,.34);
+  --glass: rgba(12,18,32,.70);
+  --glass-strong: rgba(16,24,41,.90);
+  --card-glow: rgba(102,141,255,.11);
+  --ring: rgba(125,162,255,.30);
+  --hero-grid-line: rgba(255,255,255,.035);
+  --hero-shine: rgba(125,162,255,.09);
+  --surface-hover: #172238;
+  --code-surface: #0e1728;
+  --elevated-border: rgba(48,63,91,.86);
+}
+
+html, body { min-height: 100%; }
+body {
+  position: relative;
+  overflow-x: hidden;
+  transition: color .28s ease, background-color .28s ease;
+}
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(2px);
+}
+body::before {
+  width: 42rem;
+  height: 42rem;
+  left: -18rem;
+  top: 9rem;
+  background: radial-gradient(circle, rgba(91,124,255,.13), rgba(91,124,255,0) 70%);
+}
+body::after {
+  width: 38rem;
+  height: 38rem;
+  right: -16rem;
+  top: 34rem;
+  background: radial-gradient(circle, rgba(13,148,136,.10), rgba(13,148,136,0) 70%);
+}
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 10% -5%, rgba(80,112,226,.18), transparent 32rem),
+    radial-gradient(circle at 95% 12%, rgba(28,157,146,.12), transparent 31rem),
+    linear-gradient(180deg, #0c1222 0%, #090e1a 52%, #090d18 100%);
+}
+html[data-theme="dark"] body::before { background: radial-gradient(circle, rgba(88,110,224,.16), rgba(88,110,224,0) 70%); }
+html[data-theme="dark"] body::after { background: radial-gradient(circle, rgba(23,164,149,.11), rgba(23,164,149,0) 70%); }
+
+/* Subtle grain-free grid for depth */
+.shell::before {
+  content: "";
+  position: fixed;
+  inset: var(--topbar) 0 0 var(--sidebar);
+  z-index: -1;
+  pointer-events: none;
+  opacity: .58;
+  background-image:
+    linear-gradient(to right, rgba(57,83,120,.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(57,83,120,.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 82%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 82%);
+}
+html[data-theme="dark"] .shell::before {
+  background-image:
+    linear-gradient(to right, rgba(151,170,206,.022) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(151,170,206,.022) 1px, transparent 1px);
+}
+
+.topbar {
+  border-bottom-color: var(--elevated-border);
+  background: var(--glass);
+  box-shadow: 0 1px 0 rgba(255,255,255,.34), 0 10px 32px rgba(40,62,92,.035);
+  transition: background .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+html[data-theme="dark"] .topbar {
+  box-shadow: 0 1px 0 rgba(255,255,255,.025), 0 16px 46px rgba(0,0,0,.18);
+}
+.brand-mark {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #315fe0 0%, #5b62e9 55%, #168f88 120%);
+  box-shadow: 0 10px 26px rgba(36,86,214,.28), inset 0 1px 0 rgba(255,255,255,.28);
+}
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 1px 1px 50% 1px;
+  border-radius: 12px 12px 10px 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,.18), transparent);
+}
+.brand-title { color: var(--text); }
+.brand-subtitle { color: var(--muted); }
+.progress-track {
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+  box-shadow: inset 0 1px 2px rgba(26,39,58,.06);
+}
+.progress-fill {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #3f6be5 0%, #7b70f1 52%, #18a89b 100%);
+  box-shadow: 0 0 16px rgba(91,124,255,.30);
+}
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.46), transparent);
+  transform: translateX(-100%);
+  animation: progressShimmer 3.8s ease-in-out infinite;
+}
+@keyframes progressShimmer {
+  0%, 62% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.icon-btn {
+  color: var(--text-soft);
+  border-color: var(--elevated-border);
+  background: var(--glass-strong);
+  box-shadow: 0 6px 18px rgba(31,51,81,.05), inset 0 1px 0 rgba(255,255,255,.45);
+}
+.icon-btn:hover {
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 32%, var(--line));
+  background: var(--surface-hover);
+  box-shadow: 0 10px 26px rgba(31,51,81,.10);
+}
+.theme-toggle { position: relative; }
+.theme-icon { width: 18px; height: 18px; display: block; transition: transform .3s ease, opacity .22s ease; }
+.theme-icon-sun { display: none; }
+html[data-theme="dark"] .theme-icon-moon { display: none; }
+html[data-theme="dark"] .theme-icon-sun { display: block; }
+.theme-toggle:hover .theme-icon { transform: rotate(10deg) scale(1.04); }
+
+.sidebar {
+  border-right-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--glass) 92%, transparent);
+  transition: background .28s ease, border-color .28s ease;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--muted-2) 30%, transparent); border-radius: 999px; }
+.sidebar-count { color: var(--primary); background: var(--primary-soft); }
+.nav-link { color: var(--muted); }
+.nav-link:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--primary-soft) 55%, transparent);
+}
+.nav-link.active {
+  color: var(--primary);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--primary-soft) 94%, transparent), color-mix(in srgb, var(--primary-soft) 55%, transparent));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+.nav-num {
+  color: var(--muted);
+  background: color-mix(in srgb, var(--line) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+}
+.nav-status { border-color: var(--line); }
+.sidebar-tip {
+  color: var(--muted);
+  border-color: var(--elevated-border);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--primary-soft) 58%, var(--surface)), color-mix(in srgb, var(--surface-soft) 88%, transparent));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.20);
+}
+.sidebar-tip strong { color: var(--text); }
+
+.main { position: relative; }
+.content-wrap { position: relative; }
+
+.hero {
+  border-color: var(--elevated-border);
+  background:
+    radial-gradient(circle at 88% 10%, rgba(91,124,255,.20), transparent 30%),
+    radial-gradient(circle at 65% 92%, rgba(13,148,136,.11), transparent 28%),
+    linear-gradient(145deg, var(--glass-strong), color-mix(in srgb, var(--surface-soft) 90%, transparent));
+  box-shadow: 0 30px 85px rgba(24,45,79,.12), 0 1px 0 rgba(255,255,255,.50) inset;
+  transition: background .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--hero-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hero-grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(105deg, transparent 8%, #000 48%, rgba(0,0,0,.15) 90%);
+  mask-image: linear-gradient(105deg, transparent 8%, #000 48%, rgba(0,0,0,.15) 90%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: -90px;
+  top: -105px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+  box-shadow: 0 0 0 30px color-mix(in srgb, var(--primary) 3%, transparent), 0 0 0 65px color-mix(in srgb, var(--cyan) 2%, transparent);
+  pointer-events: none;
+}
+.hero-copy, .hero-side { position: relative; z-index: 1; }
+.hero h1 { color: var(--text); text-wrap: balance; }
+.hero-lead { color: var(--text-soft); }
+.eyebrow {
+  border-color: color-mix(in srgb, var(--primary) 18%, var(--line));
+  background: color-mix(in srgb, var(--primary-soft) 82%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.30);
+}
+.meta-pill {
+  color: var(--text-soft);
+  border-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--glass-strong) 92%, transparent);
+  box-shadow: 0 5px 18px rgba(20,40,70,.035);
+}
+.hero-side {
+  border-left-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--surface-soft) 58%, transparent);
+}
+.roadmap-card {
+  border-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--glass-strong) 94%, transparent);
+  box-shadow: 0 18px 50px rgba(24,45,79,.11), inset 0 1px 0 rgba(255,255,255,.42);
+}
+.roadmap-title { color: var(--text); }
+.roadmap-item {
+  color: var(--text-soft);
+  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.roadmap-item:hover { transform: translateX(3px); border-color: color-mix(in srgb, var(--primary) 18%, var(--line)); }
+.roadmap-icon { background: var(--surface-strong); border-color: var(--line); }
+
+.btn-primary {
+  background: linear-gradient(135deg, #2b59d7 0%, #5d67e8 58%, #318eac 135%);
+  box-shadow: 0 12px 28px rgba(36,86,214,.24), inset 0 1px 0 rgba(255,255,255,.20);
+}
+.btn-primary:hover { box-shadow: 0 16px 38px rgba(36,86,214,.30); }
+.btn-secondary {
+  color: var(--text-soft);
+  background: var(--glass-strong);
+  border-color: var(--elevated-border);
+}
+.btn-secondary:hover { color: var(--text); border-color: color-mix(in srgb, var(--primary) 24%, var(--line)); background: var(--surface-hover); }
+
+.lesson { position: relative; }
+.lesson + .lesson::before {
+  content: "";
+  position: absolute;
+  left: 27px;
+  top: -50px;
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--primary) 18%, var(--line)));
+}
+.lesson-num {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #315ee0 0%, #5c68e8 62%, #388ca8 135%);
+  box-shadow: 0 12px 28px rgba(36,86,214,.21), inset 0 1px 0 rgba(255,255,255,.24);
+}
+.lesson-num::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(255,255,255,.20), transparent 44%);
+}
+.lesson h2 { color: var(--text); text-wrap: balance; }
+.lesson-intro { color: var(--muted); }
+.lesson-time {
+  color: var(--muted);
+  border-color: var(--elevated-border);
+  background: var(--glass);
+}
+
+.card,
+.feature-card,
+.accordion,
+.command-chip,
+.usecase-card,
+.question {
+  border-color: var(--elevated-border);
+  background: var(--glass-strong);
+  box-shadow: var(--shadow-xs), inset 0 1px 0 rgba(255,255,255,.22);
+  transition: transform .20s ease, box-shadow .20s ease, border-color .20s ease, background .28s ease;
+}
+.card:hover,
+.feature-card:hover,
+.usecase-card:hover {
+  border-color: color-mix(in srgb, var(--primary) 20%, var(--line));
+  box-shadow: 0 16px 42px rgba(28,48,80,.085), inset 0 1px 0 rgba(255,255,255,.24);
+}
+.card h3, .feature-card h3, .usecase-title, .question h3 { color: var(--text); }
+.card p, .feature-card p, .usecase-desc { color: var(--muted); }
+.feature-icon,
+.usecase-icon,
+.question-index,
+.formula-index { background: var(--primary-soft); color: var(--primary); }
+
+.callout { box-shadow: inset 0 1px 0 rgba(255,255,255,.16); }
+.callout.info { border-color: color-mix(in srgb, var(--primary) 20%, var(--line)); background: var(--primary-soft); }
+.callout.success { border-color: color-mix(in srgb, var(--green) 25%, var(--line)); background: var(--green-soft); }
+.callout.warn { border-color: color-mix(in srgb, var(--amber) 25%, var(--line)); background: var(--amber-soft); }
+.callout.danger { border-color: color-mix(in srgb, var(--red) 24%, var(--line)); background: var(--red-soft); }
+.callout.info .callout-icon,
+.callout.success .callout-icon,
+.callout.warn .callout-icon,
+.callout.danger .callout-icon { background: color-mix(in srgb, var(--surface-strong) 92%, transparent); }
+
+.prompt {
+  border-color: var(--elevated-border);
+  background: var(--code-surface);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 10px 26px rgba(26,46,78,.045);
+}
+.prompt-head {
+  border-bottom-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+}
+.prompt-label { color: var(--muted); }
+.prompt pre { color: var(--text); }
+.copy-btn {
+  border-color: var(--elevated-border);
+  background: var(--surface-strong);
+  color: var(--primary);
+}
+.copy-btn:hover { background: var(--primary-soft); border-color: color-mix(in srgb, var(--primary) 24%, var(--line)); }
+
+.compare-card.bad {
+  border-color: color-mix(in srgb, var(--red) 24%, var(--line));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--red-soft) 75%, var(--surface)), var(--red-soft));
+}
+.compare-card.good {
+  border-color: color-mix(in srgb, var(--green) 24%, var(--line));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--green-soft) 76%, var(--surface)), var(--green-soft));
+}
+.bad .compare-label, .good .compare-label { background: color-mix(in srgb, var(--surface-strong) 94%, transparent); }
+.compare-text { color: var(--text-soft); }
+
+.accordion-btn { color: var(--text); }
+.accordion-btn:hover { background: color-mix(in srgb, var(--primary-soft) 38%, transparent); }
+.accordion-icon { background: color-mix(in srgb, var(--line) 56%, transparent); color: var(--muted); }
+
+.formula-box {
+  border-color: var(--elevated-border);
+  background: linear-gradient(145deg, var(--surface-strong), color-mix(in srgb, var(--primary-soft) 26%, var(--surface-soft)));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.formula-box:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--primary) 24%, var(--line));
+  box-shadow: 0 14px 34px rgba(28,48,80,.08);
+}
+.formula-box strong { color: var(--text); }
+.field label { color: var(--muted); }
+.field textarea {
+  border-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+  color: var(--text);
+}
+.field textarea::placeholder { color: var(--muted-2); }
+.field textarea:focus { border-color: color-mix(in srgb, var(--primary) 60%, var(--line)); box-shadow: 0 0 0 4px var(--ring); background: var(--surface-strong); }
+.builder-preview {
+  border-color: var(--elevated-border);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--primary-soft) 25%, var(--surface-strong)), var(--surface-soft));
+}
+.builder-preview-title { color: var(--muted); }
+.builder-output { color: var(--text); }
+
+.practice {
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--line));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--primary-soft) 52%, var(--surface)), color-mix(in srgb, var(--surface-soft) 92%, transparent));
+}
+.practice p { color: var(--text-soft); }
+.lesson-done {
+  border-color: var(--elevated-border);
+  background: var(--glass-strong);
+  color: var(--primary);
+}
+.lesson-done:hover { border-color: color-mix(in srgb, var(--primary) 26%, var(--line)); background: var(--surface-hover); }
+.lesson-done.done { color: var(--green); border-color: color-mix(in srgb, var(--green) 28%, var(--line)); background: var(--green-soft); }
+
+.command-chip { color: var(--text); }
+.command-chip:hover { border-color: color-mix(in srgb, var(--primary) 25%, var(--line)); box-shadow: 0 14px 32px rgba(28,48,80,.08); }
+.filter-btn {
+  border-color: var(--elevated-border);
+  background: var(--surface-strong);
+  color: var(--text-soft);
+}
+.filter-btn:hover { border-color: color-mix(in srgb, var(--primary) 22%, var(--line)); color: var(--text); }
+.filter-btn.active { color: var(--primary); border-color: color-mix(in srgb, var(--primary) 28%, var(--line)); background: var(--primary-soft); }
+.format-preview {
+  border-color: var(--elevated-border);
+  background: var(--code-surface);
+}
+.format-preview h4, .format-preview pre { color: var(--text); }
+
+.safety-card ul { color: var(--text-soft); }
+.safety-card.green { border-color: color-mix(in srgb, var(--green) 25%, var(--line)); background: var(--green-soft); }
+.safety-card.amber { border-color: color-mix(in srgb, var(--amber) 25%, var(--line)); background: var(--amber-soft); }
+.safety-card.red { border-color: color-mix(in srgb, var(--red) 25%, var(--line)); background: var(--red-soft); }
+.usecase-tag { background: color-mix(in srgb, var(--line) 54%, transparent); color: var(--muted); }
+
+.choice {
+  border-color: var(--elevated-border);
+  background: color-mix(in srgb, var(--surface-soft) 94%, transparent);
+  color: var(--text-soft);
+}
+.choice:hover { border-color: color-mix(in srgb, var(--primary) 22%, var(--line)); background: var(--surface-hover); }
+.question.correct { border-color: color-mix(in srgb, var(--green) 30%, var(--line)); background: color-mix(in srgb, var(--green-soft) 62%, var(--surface)); }
+.question.wrong { border-color: color-mix(in srgb, var(--red) 28%, var(--line)); background: color-mix(in srgb, var(--red-soft) 62%, var(--surface)); }
+.quiz-result {
+  border-color: color-mix(in srgb, var(--primary) 20%, var(--line));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--primary-soft) 52%, var(--surface)), var(--surface-soft));
+}
+.score-ring { background: conic-gradient(var(--primary) calc(var(--score) * 1%), color-mix(in srgb, var(--line) 85%, transparent) 0); }
+.score-ring::after { background: var(--surface-strong); }
+
+.finish-card {
+  border-color: var(--elevated-border);
+  background:
+    radial-gradient(circle at 92% 10%, color-mix(in srgb, var(--cyan) 11%, transparent), transparent 28%),
+    linear-gradient(145deg, var(--surface-strong), color-mix(in srgb, var(--primary-soft) 24%, var(--surface-soft)));
+  box-shadow: 0 18px 48px rgba(26,46,78,.085), inset 0 1px 0 rgba(255,255,255,.22);
+}
+.finish-card h3, .footer strong { color: var(--text); }
+.footer { border-top-color: var(--line); color: var(--muted); }
+.toast { background: color-mix(in srgb, #111827 88%, var(--primary)); }
+
+.mobile-jump select {
+  color: var(--text);
+  border-color: var(--elevated-border);
+  background: var(--surface-strong);
+}
+
+/* Dark-theme fine tuning for hard-coded light surfaces */
+html[data-theme="dark"] ::selection { background: rgba(125,162,255,.35); color: #fff; }
+html[data-theme="dark"] .hero { box-shadow: 0 34px 90px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.04); }
+html[data-theme="dark"] .hero-side { background: rgba(11,17,31,.34); }
+html[data-theme="dark"] .roadmap-card { box-shadow: 0 20px 52px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.035); }
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] .feature-card:hover,
+html[data-theme="dark"] .usecase-card:hover { box-shadow: 0 18px 48px rgba(0,0,0,.24); }
+html[data-theme="dark"] .icon-btn { box-shadow: inset 0 1px 0 rgba(255,255,255,.035), 0 8px 22px rgba(0,0,0,.15); }
+html[data-theme="dark"] .btn-primary { box-shadow: 0 14px 34px rgba(67,104,224,.23), inset 0 1px 0 rgba(255,255,255,.12); }
+html[data-theme="dark"] .callout-icon { box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+
+/* Motion polish, disabled for users who prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .hero { animation: heroReveal .55s cubic-bezier(.22,.8,.28,1) both; }
+  @keyframes heroReveal {
+    from { opacity: 0; transform: translateY(10px) scale(.995); }
+    to { opacity: 1; transform: none; }
+  }
+  .lesson-header { animation: sectionFade .35s ease both; animation-timeline: view(); animation-range: entry 5% cover 22%; }
+  @keyframes sectionFade {
+    from { opacity: .3; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@media (max-width: 1160px) {
+  .shell::before { left: 0; }
+}
+
+@media (max-width: 760px) {
+  .theme-toggle { display: grid !important; }
+  .top-actions { gap: 6px; }
+  .icon-btn { width: 36px; height: 36px; }
+  .hero { border-radius: 25px; }
+  .hero::after { width: 200px; height: 200px; right: -110px; top: -85px; }
+  .lesson + .lesson::before { display: none; }
+}
+
+@media print {
+  html[data-theme="dark"] { --bg: #fff; --surface:#fff; --surface-strong:#fff; --surface-soft:#fff; --text:#111827; --muted:#667085; --line:#e5e7eb; --primary:#2456d6; color-scheme: light; }
+  body { background: #fff !important; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">ТЛЦ</div>
+      <div class="brand-copy">
+        <div class="brand-title">AI Academy</div>
+        <div class="brand-subtitle">ChatGPT 101 для сотрудников</div>
+      </div>
+    </div>
+
+    <div class="top-progress" aria-label="Прогресс курса">
+      <div class="progress-row">
+        <span>Прогресс курса</span>
+        <span id="progressText">0 из 13</span>
+      </div>
+      <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <div class="top-actions">
+      <button class="icon-btn theme-toggle" id="themeToggle" type="button" title="Переключить тему" aria-label="Переключить тему" aria-pressed="false">
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.2A8.2 8.2 0 0 1 8.8 3.6a8.4 8.4 0 1 0 11.6 11.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" id="printBtn" title="Печать" aria-label="Печать">⎙</button>
+      <button class="icon-btn" id="resetProgressBtn" title="Сбросить прогресс" aria-label="Сбросить прогресс">↺</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" aria-label="Навигация по курсу">
+    <div class="sidebar-head">
+      <div class="sidebar-kicker">Содержание</div>
+      <div class="sidebar-count">13 модулей</div>
+    </div>
+
+    <nav class="nav" id="courseNav">
+      <a class="nav-link" href="#module1" data-module="1"><span class="nav-num">01</span><span>Что такое ChatGPT</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module2" data-module="2"><span class="nav-num">02</span><span>Первый запрос</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module3" data-module="3"><span class="nav-num">03</span><span>Формула запроса</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module4" data-module="4"><span class="nav-num">04</span><span>Работа с текстом</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module5" data-module="5"><span class="nav-num">05</span><span>Работа с файлами</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module6" data-module="6"><span class="nav-num">06</span><span>Скриншоты</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module7" data-module="7"><span class="nav-num">07</span><span>Улучшение ответа</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module8" data-module="8"><span class="nav-num">08</span><span>Формат результата</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module9" data-module="9"><span class="nav-num">09</span><span>Ошибки ChatGPT</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module10" data-module="10"><span class="nav-num">10</span><span>Проверка результата</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module11" data-module="11"><span class="nav-num">11</span><span>Безопасность</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module12" data-module="12"><span class="nav-num">12</span><span>Сценарии ТЛЦ</span><span class="nav-status">✓</span></a>
+      <a class="nav-link" href="#module13" data-module="13"><span class="nav-num">13</span><span>Финальный тест</span><span class="nav-status">✓</span></a>
+    </nav>
+
+    <div class="sidebar-tip">
+      <strong>Как проходить</strong>
+      Читайте по порядку, пробуйте промпты на реальных задачах и отмечайте каждый модуль как пройденный.
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="content-wrap">
+      <div class="mobile-jump">
+        <select id="mobileJump" aria-label="Перейти к модулю">
+          <option value="">Перейти к модулю...</option>
+          <option value="module1">1. Что такое ChatGPT</option>
+          <option value="module2">2. Первый запрос</option>
+          <option value="module3">3. Формула запроса</option>
+          <option value="module4">4. Работа с текстом</option>
+          <option value="module5">5. Работа с файлами</option>
+          <option value="module6">6. Скриншоты</option>
+          <option value="module7">7. Улучшение ответа</option>
+          <option value="module8">8. Формат результата</option>
+          <option value="module9">9. Ошибки ChatGPT</option>
+          <option value="module10">10. Проверка результата</option>
+          <option value="module11">11. Безопасность</option>
+          <option value="module12">12. Сценарии ТЛЦ</option>
+          <option value="module13">13. Финальный тест</option>
+        </select>
+      </div>
+
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Уровень 1 · Начинающий</div>
+            <h1 id="heroTitle">ChatGPT <span>101</span></h1>
+            <p class="hero-lead">Практический курс для сотрудников ТЛЦ: как поставить задачу, приложить данные, получить полезный результат и проверить его перед использованием.</p>
+
+            <div class="hero-meta">
+              <span class="meta-pill">⏱ 20-30 минут</span>
+              <span class="meta-pill">13 коротких модулей</span>
+              <span class="meta-pill">Практика на задачах ТЛЦ</span>
+              <span class="meta-pill">Финальный тест</span>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#module1" id="startBtn">Начать курс <span aria-hidden="true">↓</span></a>
+              <button class="btn btn-secondary" id="continueBtn" type="button">Продолжить с места остановки</button>
+            </div>
+          </div>
+
+          <div class="hero-side">
+            <div class="roadmap-card">
+              <div class="roadmap-head">
+                <div class="roadmap-title">Маршрут обучения</div>
+                <div class="roadmap-badge">101</div>
+              </div>
+              <div class="roadmap">
+                <div class="roadmap-item"><span class="roadmap-icon">1</span><span>Понять, что можно поручить ИИ</span></div>
+                <div class="roadmap-item"><span class="roadmap-icon">2</span><span>Научиться ставить задачу</span></div>
+                <div class="roadmap-item"><span class="roadmap-icon">3</span><span>Работать с файлами и скриншотами</span></div>
+                <div class="roadmap-item"><span class="roadmap-icon">4</span><span>Уточнять и улучшать ответ</span></div>
+                <div class="roadmap-item"><span class="roadmap-icon">5</span><span>Проверять важные факты и цифры</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1 -->
+      <section class="lesson" id="module1" data-module="1">
+        <div class="lesson-header">
+          <div class="lesson-num">01</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Старт</div>
+            <h2>Что такое ChatGPT</h2>
+            <p class="lesson-intro">Не поисковая строка и не волшебная кнопка. Удобнее всего воспринимать его как быстрого рабочего помощника.</p>
+          </div>
+          <div class="lesson-time">2 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="card card-pad">
+            <h3>Представьте нового коллегу</h3>
+            <p>Вы объясняете задачу обычным языком, даете нужные данные, получаете черновик результата и при необходимости просите улучшить его. Чем понятнее задача и исходные данные, тем полезнее ответ.</p>
+          </div>
+
+          <div class="grid-3">
+            <div class="feature-card"><div class="feature-icon">✍</div><h3>Написать</h3><p>Письмо, сообщение, инструкцию, краткий отчет.</p></div>
+            <div class="feature-card"><div class="feature-icon">◫</div><h3>Разобрать</h3><p>Договор, PDF, переписку, коммерческое предложение.</p></div>
+            <div class="feature-card"><div class="feature-icon">⌁</div><h3>Объяснить</h3><p>Сложный текст простыми словами и на понятном примере.</p></div>
+            <div class="feature-card"><div class="feature-icon">▤</div><h3>Проанализировать</h3><p>Excel, список, набор показателей или результаты работы.</p></div>
+            <div class="feature-card"><div class="feature-icon">⇄</div><h3>Сравнить</h3><p>Поставщиков, условия, варианты решений, редакции документов.</p></div>
+            <div class="feature-card"><div class="feature-icon">⌕</div><h3>Исследовать</h3><p>Собрать и структурировать информацию по заданной теме.</p></div>
+          </div>
+
+          <div class="callout info"><div class="callout-icon">i</div><div><strong>Специальный язык не нужен</strong><p>Пишите обычными словами. Главное - объяснить, что вы хотите получить и на каких данных нужно работать.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="1">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module2">Первый запрос →</a></div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="lesson" id="module2" data-module="2">
+        <div class="lesson-header">
+          <div class="lesson-num">02</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Первый навык</div>
+            <h2>Начинайте просто</h2>
+            <p class="lesson-intro">Не пытайтесь с первого сообщения написать идеальный промпт. Работайте диалогом.</p>
+          </div>
+          <div class="lesson-time">2 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="card card-pad">
+            <h3>Шаг 1. Поставьте простую задачу</h3>
+            <div class="prompt">
+              <div class="prompt-head"><div class="prompt-label">Первый запрос</div><button class="copy-btn" type="button">Скопировать</button></div>
+              <pre>Подготовь вежливый ответ клиенту на это письмо.</pre>
+            </div>
+          </div>
+
+          <div class="card card-pad">
+            <h3>Шаг 2. Уточните результат</h3>
+            <div class="prompt">
+              <div class="prompt-head"><div class="prompt-label">Продолжение диалога</div><button class="copy-btn" type="button">Скопировать</button></div>
+              <pre>Сделай ответ в два раза короче.
+Убери лишние обещания.
+Оставь только подтвержденную информацию.</pre>
+            </div>
+          </div>
+
+          <div class="callout success"><div class="callout-icon">✓</div><div><strong>Главная мысль</strong><p>Запрос → ответ → уточнение → улучшение. Первый ответ не обязан быть финальным.</p></div></div>
+
+          <div class="practice"><div class="practice-title">🧪 Мини-практика</div><p>Возьмите недавнее рабочее письмо. Попросите ChatGPT улучшить его, не меняя смысл, затем попросите сократить результат примерно на треть.</p></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="2">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module3">Формула запроса →</a></div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="lesson" id="module3" data-module="3">
+        <div class="lesson-header">
+          <div class="lesson-num">03</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Основная формула</div>
+            <h2>4 элемента хорошего запроса</h2>
+            <p class="lesson-intro">Для большинства рабочих задач достаточно четырех простых вещей.</p>
+          </div>
+          <div class="lesson-time">4 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="formula-strip">
+            <div class="formula-box"><div class="formula-index">1</div><strong>ЗАДАЧА</strong><span>Что нужно сделать?</span></div>
+            <div class="formula-box"><div class="formula-index">2</div><strong>КОНТЕКСТ</strong><span>Что важно знать о ситуации?</span></div>
+            <div class="formula-box"><div class="formula-index">3</div><strong>ДАННЫЕ</strong><span>На основании чего работать?</span></div>
+            <div class="formula-box"><div class="formula-index">4</div><strong>РЕЗУЛЬТАТ</strong><span>Как должен выглядеть ответ?</span></div>
+          </div>
+
+          <div class="compare">
+            <div class="compare-card bad"><div class="compare-label">✕ Слишком мало</div><div class="compare-text">Напиши письмо клиенту.</div></div>
+            <div class="compare-card good"><div class="compare-label">✓ Намного лучше</div><div class="compare-text">Подготовь короткое деловое письмо клиенту. Клиент спрашивает статус расчета ставки. Ниже наша переписка. Ответ должен быть не более 5 предложений.</div></div>
+          </div>
+
+          <div class="accordion">
+            <button class="accordion-btn" type="button"><span>Почему второй запрос лучше?</span><span class="accordion-icon">+</span></button>
+            <div class="accordion-content"><div class="accordion-inner"><div>В нем есть действие, ситуация, источник информации и понятный формат результата. ChatGPT меньше угадывает и лучше понимает, что именно вам нужно.</div></div></div>
+          </div>
+
+          <div class="card card-pad">
+            <h3>Соберите свой запрос</h3>
+            <div class="builder" id="promptBuilder">
+              <div class="builder-fields">
+                <div class="field"><label for="bTask">Задача</label><textarea id="bTask" placeholder="Например: подготовь ответ клиенту"></textarea></div>
+                <div class="field"><label for="bContext">Контекст</label><textarea id="bContext" placeholder="Что произошло и что важно знать"></textarea></div>
+                <div class="field"><label for="bData">Данные</label><textarea id="bData" placeholder="Например: используй приложенную переписку"></textarea></div>
+                <div class="field"><label for="bResult">Результат</label><textarea id="bResult" placeholder="Например: письмо до 5 предложений"></textarea></div>
+              </div>
+              <div class="builder-preview">
+                <div class="builder-preview-head"><div class="builder-preview-title">Готовый промпт</div><button class="copy-btn" id="copyBuilder" type="button">Скопировать</button></div>
+                <pre class="builder-output" id="builderOutput">Заполните поля слева, и здесь появится готовый запрос.</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="3">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module4">Работа с текстом →</a></div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="lesson" id="module4" data-module="4">
+        <div class="lesson-header">
+          <div class="lesson-num">04</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Ежедневная работа</div>
+            <h2>Работа с текстом</h2>
+            <p class="lesson-intro">Самый простой способ начать получать пользу от ChatGPT уже сегодня.</p>
+          </div>
+          <div class="lesson-time">2 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="grid-3">
+            <div class="card card-pad"><h3>Создать</h3><div class="prompt"><div class="prompt-head"><div class="prompt-label">Поставщику</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Подготовь короткое деловое письмо поставщику.
+Он обещал прислать ставку вчера, но ответа пока нет.
+Нужно вежливо напомнить и попросить ответ сегодня.</pre></div></div>
+            <div class="card card-pad"><h3>Улучшить</h3><div class="prompt"><div class="prompt-head"><div class="prompt-label">Черновик</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ниже мой черновик.
+Исправь ошибки и сделай текст профессиональнее.
+Не меняй смысл и не добавляй новых фактов.</pre></div></div>
+            <div class="card card-pad"><h3>Сократить</h3><div class="prompt"><div class="prompt-head"><div class="prompt-label">Сжатие</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Сократи текст примерно в два раза.
+Сохрани решения, сроки, ответственных и важные ограничения.</pre></div></div>
+          </div>
+
+          <div class="callout info"><div class="callout-icon">i</div><div><strong>Если черновик уже есть</strong><p>Не просите написать текст заново. Попросите сохранить смысл и улучшить структуру, ясность или тон.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="4">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module5">Работа с файлами →</a></div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="lesson" id="module5" data-module="5">
+        <div class="lesson-header">
+          <div class="lesson-num">05</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Исходные данные</div>
+            <h2>Работа с файлами</h2>
+            <p class="lesson-intro">Не пересказывайте документ вручную. Дайте ChatGPT исходный файл и конкретную задачу.</p>
+          </div>
+          <div class="lesson-time">3 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="grid-4">
+            <div class="feature-card"><div class="feature-icon">PDF</div><h3>PDF</h3><p>Договоры, КП, инструкции, отчеты.</p></div>
+            <div class="feature-card"><div class="feature-icon">W</div><h3>Word</h3><p>Регламенты и рабочие документы.</p></div>
+            <div class="feature-card"><div class="feature-icon">XLS</div><h3>Excel</h3><p>Ставки, отчеты, списки, расчеты.</p></div>
+            <div class="feature-card"><div class="feature-icon">IMG</div><h3>Изображение</h3><p>Скриншоты интерфейса, схемы и визуальные материалы.</p></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card card-pad">
+              <h3>Пример: договор</h3>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">После загрузки файла</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Изучи приложенный договор.
+
+Найди:
+- порядок оплаты;
+- сроки;
+- ответственность сторон;
+- штрафы;
+- условия расторжения;
+- автоматическую пролонгацию.
+
+Для каждого важного вывода укажи пункт договора.
+Если информации нет, так и напиши.</pre></div>
+            </div>
+            <div class="card card-pad">
+              <h3>Пример: Excel со ставками</h3>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">После загрузки Excel</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Изучи приложенный Excel.
+
+Сначала объясни:
+1. какие листы есть;
+2. какие данные содержатся;
+3. какие основные поля используются.
+
+После этого сравни предложения поставщиков по стоимости и сроку.
+Не заполняй отсутствующие данные самостоятельно.</pre></div>
+            </div>
+          </div>
+
+          <div class="callout warn"><div class="callout-icon">!</div><div><strong>Для точных цифр загружайте исходный Excel или CSV</strong><p>Скриншот таблицы подходит для визуального разбора, но для расчетов и сравнения значений лучше исходный файл.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="5">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module6">Скриншоты →</a></div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="lesson" id="module6" data-module="6">
+        <div class="lesson-header">
+          <div class="lesson-num">06</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Визуальный контекст</div>
+            <h2>Работа со скриншотами</h2>
+            <p class="lesson-intro">Если проблему трудно описать, покажите экран и попросите разобрать только то, что действительно видно.</p>
+          </div>
+          <div class="lesson-time">2 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="card card-pad">
+            <h3>Пример: проблема в Битрикс24</h3>
+            <div class="prompt"><div class="prompt-head"><div class="prompt-label">Скриншот интерфейса</div><button class="copy-btn" type="button">Скопировать</button></div><pre>На скриншоте интерфейс Битрикс24.
+Мне нужно изменить настройки этого поля.
+
+Посмотри на экран и объясни, что нажать дальше.
+Используй только элементы интерфейса, которые реально видны на изображении.</pre></div>
+          </div>
+
+          <div class="callout success"><div class="callout-icon">✓</div><div><strong>Работайте пошагово</strong><p>Сделали действие → получили новый экран → отправили новый скриншот в тот же чат → продолжили.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="6">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module7">Улучшение ответа →</a></div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="lesson" id="module7" data-module="7">
+        <div class="lesson-header">
+          <div class="lesson-num">07</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Итерации</div>
+            <h2>Первый ответ не понравился?</h2>
+            <p class="lesson-intro">Не начинайте все заново. Нажмите на любую карточку ниже, чтобы скопировать уточнение.</p>
+          </div>
+          <div class="lesson-time">2 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="command-grid">
+            <button class="command-chip" type="button" data-copy-text="Сократи примерно в два раза, не потеряв важные факты."><strong>Слишком длинно</strong><span>Сократить без потери смысла</span></button>
+            <button class="command-chip" type="button" data-copy-text="Объясни проще, без профессионального жаргона. Добавь один понятный пример."><strong>Слишком сложно</strong><span>Объяснить простыми словами</span></button>
+            <button class="command-chip" type="button" data-copy-text="Сделай текст спокойнее, короче и более деловым."><strong>Не тот стиль</strong><span>Изменить тон</span></button>
+            <button class="command-chip" type="button" data-copy-text="Представь результат в виде компактной таблицы."><strong>Неудобный формат</strong><span>Перестроить ответ</span></button>
+            <button class="command-chip" type="button" data-copy-text="Покажи, в каких выводах ты не уверен и что нужно проверить вручную."><strong>Есть сомнения</strong><span>Выделить неопределенность</span></button>
+            <button class="command-chip" type="button" data-copy-text="Используй только данные из приложенных материалов. Не додумывай отсутствующую информацию."><strong>ИИ додумал</strong><span>Ограничить источниками</span></button>
+          </div>
+
+          <div class="callout info"><div class="callout-icon">↻</div><div><strong>Рабочая схема</strong><p>Запрос → ответ → уточнение → улучшение → проверка.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="7">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module8">Формат результата →</a></div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="lesson" id="module8" data-module="8">
+        <div class="lesson-header">
+          <div class="lesson-num">08</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Формат вывода</div>
+            <h2>Скажите, как должен выглядеть ответ</h2>
+            <p class="lesson-intro">ChatGPT не должен угадывать, нужна вам таблица, письмо, чек-лист или краткий вывод.</p>
+          </div>
+          <div class="lesson-time">3 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="compare">
+            <div class="compare-card bad"><div class="compare-label">✕ Неопределенно</div><div class="compare-text">Сравни поставщиков.</div></div>
+            <div class="compare-card good"><div class="compare-label">✓ Конкретно</div><div class="compare-text">Сравни поставщиков таблицей: Поставщик | Стоимость | Срок | Free time | Дополнительные расходы | Комментарий.</div></div>
+          </div>
+
+          <div class="card card-pad">
+            <h3>Выберите формат и посмотрите шаблон</h3>
+            <div class="format-picker">
+              <div class="format-list">
+                <button class="filter-btn active" type="button" data-format="table">Таблица сравнения</button>
+                <button class="filter-btn" type="button" data-format="brief">Краткий вывод</button>
+                <button class="filter-btn" type="button" data-format="checklist">Чек-лист</button>
+                <button class="filter-btn" type="button" data-format="decision">Для руководителя</button>
+              </div>
+              <div class="format-preview"><h4 id="formatTitle">Таблица сравнения</h4><pre id="formatText">Представь результат таблицей со столбцами:
+Поставщик | Стоимость | Срок | Дополнительные расходы | Риски | Комментарий.</pre></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="8">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module9">Ошибки ChatGPT →</a></div>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="lesson" id="module9" data-module="9">
+        <div class="lesson-header">
+          <div class="lesson-num">09</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Ограничения</div>
+            <h2>ChatGPT может ошибаться</h2>
+            <p class="lesson-intro">Уверенный и аккуратный текст еще не означает, что факты внутри верны.</p>
+          </div>
+          <div class="lesson-time">2 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="grid-3">
+            <div class="feature-card"><div class="feature-icon">!</div><h3>Придумать факт</h3><p>Информация может звучать убедительно, но не подтверждаться.</p></div>
+            <div class="feature-card"><div class="feature-icon">123</div><h3>Ошибиться в цифрах</h3><p>Суммы, проценты и расчеты обязательно проверяйте.</p></div>
+            <div class="feature-card"><div class="feature-icon">◷</div><h3>Использовать неактуальное</h3><p>Цены, законы и требования могут меняться.</p></div>
+            <div class="feature-card"><div class="feature-icon">DOC</div><h3>Неправильно понять документ</h3><p>Важные пункты проверяйте по оригиналу.</p></div>
+            <div class="feature-card"><div class="feature-icon">?</div><h3>Сделать лишний вывод</h3><p>Модель может заполнить пробелы предположением.</p></div>
+            <div class="feature-card"><div class="feature-icon">↗</div><h3>Ошибиться в источнике</h3><p>Для важных решений открывайте первоисточник.</p></div>
+          </div>
+
+          <div class="callout danger"><div class="callout-icon">!</div><div><strong>Запомните одну фразу</strong><p>Красиво написано ≠ проверено.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="9">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module10">Проверка результата →</a></div>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="lesson" id="module10" data-module="10">
+        <div class="lesson-header">
+          <div class="lesson-num">10</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Контроль качества</div>
+            <h2>Простая проверка результата</h2>
+            <p class="lesson-intro">Перед использованием важного ответа задайте три вопроса.</p>
+          </div>
+          <div class="lesson-time">3 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="grid-3">
+            <div class="card card-pad"><h3>1. Откуда это?</h3><p>Есть ли источник или это собственный вывод ChatGPT?</p></div>
+            <div class="card card-pad"><h3>2. Это факт?</h3><p>Не является ли уверенное утверждение предположением?</p></div>
+            <div class="card card-pad"><h3>3. Можно проверить?</h3><p>Сверяется ли важная информация с документом или первоисточником?</p></div>
+          </div>
+
+          <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт для самопроверки</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Проверь свой предыдущий ответ.
+
+Отдельно перечисли:
+1. Факты, подтвержденные исходными данными.
+2. Сделанные тобой выводы.
+3. Предположения.
+4. Информацию, которую нужно проверить вручную.</pre></div>
+
+          <div class="callout success"><div class="callout-icon">✓</div><div><strong>Особенно проверяйте</strong><p>Суммы, даты, тарифы, юридические условия, реквизиты, сроки и любые обещания клиенту.</p></div></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="10">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module11">Безопасность →</a></div>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="lesson" id="module11" data-module="11">
+        <div class="lesson-header">
+          <div class="lesson-num">11</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Данные компании</div>
+            <h2>Безопасность</h2>
+            <p class="lesson-intro">Передавайте только ту информацию, которая действительно нужна для решения задачи.</p>
+          </div>
+          <div class="lesson-time">3 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="callout info"><div class="callout-icon">i</div><div><strong>Рабочие задачи выполняйте в корпоративной рабочей области ChatGPT</strong><p>Перед загрузкой файла задайте себе вопрос: нужна ли ИИ вся эта информация для решения задачи?</p></div></div>
+
+          <div class="safety-grid">
+            <div class="safety-card green"><h3>Можно использовать</h3><ul><li>рабочие тексты без лишних секретов;</li><li>обезличенные примеры;</li><li>документы, необходимые для конкретной задачи.</li></ul></div>
+            <div class="safety-card amber"><h3>Сначала подумайте</h3><ul><li>ФИО и контакты;</li><li>реквизиты клиента;</li><li>внутренние данные, которые не нужны для задачи.</li></ul></div>
+            <div class="safety-card red"><h3>Не передавайте</h3><ul><li>пароли и одноразовые коды;</li><li>API-ключи и секретные токены;</li><li>данные банковских карт;</li><li>учетные данные пользователей.</li></ul></div>
+          </div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="11">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module12">Сценарии ТЛЦ →</a></div>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="lesson" id="module12" data-module="12">
+        <div class="lesson-header">
+          <div class="lesson-num">12</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Практика ТЛЦ</div>
+            <h2>Сценарии, с которых можно начать</h2>
+            <p class="lesson-intro">Выберите направление и возьмите готовый промпт для реальной рабочей задачи.</p>
+          </div>
+          <div class="lesson-time">4 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="usecase-filters" id="usecaseFilters">
+            <button class="filter-btn active" type="button" data-usecase="all">Все</button>
+            <button class="filter-btn" type="button" data-usecase="sales">Продажи</button>
+            <button class="filter-btn" type="button" data-usecase="logistics">Логистика</button>
+            <button class="filter-btn" type="button" data-usecase="docs">Документы</button>
+            <button class="filter-btn" type="button" data-usecase="ops">Операционная работа</button>
+          </div>
+
+          <div class="usecase-grid" id="usecaseGrid">
+            <div class="usecase-card" data-category="sales">
+              <div class="usecase-top"><div class="usecase-icon">✉</div><div><h3 class="usecase-title">Ответ клиенту</h3><p class="usecase-desc">Сначала понять ситуацию, потом подготовить письмо.</p></div></div>
+              <span class="usecase-tag">Продажи</span>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Изучи переписку с клиентом.
+
+Кратко объясни текущую ситуацию.
+После этого подготовь профессиональный ответ.
+Не обещай ничего, что не подтверждено в переписке.</pre></div>
+            </div>
+
+            <div class="usecase-card" data-category="logistics">
+              <div class="usecase-top"><div class="usecase-icon">🚆</div><div><h3 class="usecase-title">Сравнение ЖД ставок</h3><p class="usecase-desc">Сопоставить предложения поставщиков по единым критериям.</p></div></div>
+              <span class="usecase-tag">Логистика</span>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Изучи приложенную таблицу ставок.
+
+Сравни предложения по:
+- стоимости;
+- сроку;
+- free time;
+- дополнительным расходам.
+
+Не заполняй отсутствующие значения.</pre></div>
+            </div>
+
+            <div class="usecase-card" data-category="docs">
+              <div class="usecase-top"><div class="usecase-icon">§</div><div><h3 class="usecase-title">Разбор договора</h3><p class="usecase-desc">Быстро найти условия, которые требуют внимания.</p></div></div>
+              <span class="usecase-tag">Документы</span>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Изучи договор.
+
+Выдели:
+- сроки;
+- оплату;
+- штрафы;
+- ответственность;
+- расторжение;
+- необычные условия.
+
+Для каждого пункта укажи место в документе.</pre></div>
+            </div>
+
+            <div class="usecase-card" data-category="ops">
+              <div class="usecase-top"><div class="usecase-icon">☷</div><div><h3 class="usecase-title">Протокол встречи</h3><p class="usecase-desc">Превратить заметки в решения, задачи и открытые вопросы.</p></div></div>
+              <span class="usecase-tag">Операционная работа</span>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Изучи заметки встречи.
+
+Выдели:
+1. решения;
+2. задачи;
+3. ответственных;
+4. сроки;
+5. открытые вопросы.
+
+Если ответственный или срок не указаны, не придумывай их.</pre></div>
+            </div>
+
+            <div class="usecase-card" data-category="ops">
+              <div class="usecase-top"><div class="usecase-icon">✓</div><div><h3 class="usecase-title">Задача в Битрикс24</h3><p class="usecase-desc">Сделать понятную постановку из черновых заметок.</p></div></div>
+              <span class="usecase-tag">Операционная работа</span>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Ниже мои черновые заметки.
+
+Преврати их в понятную задачу для Битрикс24.
+Структура:
+- название;
+- цель;
+- что нужно сделать;
+- ожидаемый результат;
+- критерий готовности.</pre></div>
+            </div>
+
+            <div class="usecase-card" data-category="ops">
+              <div class="usecase-top"><div class="usecase-icon">▣</div><div><h3 class="usecase-title">Ошибка по скриншоту</h3><p class="usecase-desc">Отделить то, что видно на экране, от возможных причин.</p></div></div>
+              <span class="usecase-tag">Операционная работа</span>
+              <div class="prompt"><div class="prompt-head"><div class="prompt-label">Промпт</div><button class="copy-btn" type="button">Скопировать</button></div><pre>Посмотри на приложенный скриншот.
+
+Объясни:
+1. что сейчас видно;
+2. что может быть причиной проблемы;
+3. что проверить следующим шагом.
+
+Отделяй факты со скриншота от предположений.</pre></div>
+            </div>
+          </div>
+
+          <div class="practice"><div class="practice-title">🧪 Финальная практика</div><p>Выберите одну реальную задачу, которую вы выполняли сегодня. Решите ее с помощью формулы: <strong>Задача → Контекст → Данные → Результат</strong>.</p></div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="12">Отметить пройденным</button>
+          <div class="lesson-next">Далее: <a href="#module13">Финальный тест →</a></div>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="lesson" id="module13" data-module="13">
+        <div class="lesson-header">
+          <div class="lesson-num">13</div>
+          <div class="lesson-title-wrap">
+            <div class="lesson-kicker">Финиш</div>
+            <h2>Проверьте себя</h2>
+            <p class="lesson-intro">8 коротких вопросов. После проверки вы увидите результат и объяснения.</p>
+          </div>
+          <div class="lesson-time">4 мин</div>
+        </div>
+
+        <div class="lesson-body">
+          <div class="quiz-shell" id="quiz">
+            <div class="question" data-answer="b" data-explanation="Первый ответ можно уточнять и улучшать в том же диалоге.">
+              <div class="question-head"><h3>Что лучше сделать, если первый ответ ChatGPT не подходит?</h3><div class="question-index">1</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q1" value="a"><span>Закрыть чат и начать новый</span></label>
+                <label class="choice"><input type="radio" name="q1" value="b"><span>Уточнить, что именно нужно изменить</span></label>
+                <label class="choice"><input type="radio" name="q1" value="c"><span>Повторить тот же запрос</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="c" data-explanation="Базовая формула курса: задача, контекст, данные, результат.">
+              <div class="question-head"><h3>Какие четыре элемента помогают сформулировать хороший запрос?</h3><div class="question-index">2</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q2" value="a"><span>Дата, время, имя, отдел</span></label>
+                <label class="choice"><input type="radio" name="q2" value="b"><span>Роль, модель, температура, токены</span></label>
+                <label class="choice"><input type="radio" name="q2" value="c"><span>Задача, контекст, данные, результат</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="a" data-explanation="Для точного анализа чисел лучше исходный Excel или CSV, а не изображение таблицы.">
+              <div class="question-head"><h3>Что лучше загрузить для анализа ставок?</h3><div class="question-index">3</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q3" value="a"><span>Исходный Excel</span></label>
+                <label class="choice"><input type="radio" name="q3" value="b"><span>Фотографию монитора</span></label>
+                <label class="choice"><input type="radio" name="q3" value="c"><span>Перепечатать несколько цифр вручную</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="c" data-explanation="ChatGPT может уверенно формулировать ошибочные или неподтвержденные утверждения.">
+              <div class="question-head"><h3>Может ли ChatGPT уверенно написать неправильную информацию?</h3><div class="question-index">4</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q4" value="a"><span>Нет</span></label>
+                <label class="choice"><input type="radio" name="q4" value="b"><span>Только при анализе Excel</span></label>
+                <label class="choice"><input type="radio" name="q4" value="c"><span>Да</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="b" data-explanation="Секреты доступа не должны передаваться в чат: пароли, одноразовые коды, API-ключи и токены.">
+              <div class="question-head"><h3>Что нельзя передавать ChatGPT?</h3><div class="question-index">5</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q5" value="a"><span>Текст рабочего письма, если он нужен для задачи</span></label>
+                <label class="choice"><input type="radio" name="q5" value="b"><span>Пароли и API-ключи</span></label>
+                <label class="choice"><input type="radio" name="q5" value="c"><span>Обезличенную инструкцию</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="b" data-explanation="Если информации нет, это нужно отметить как пробел, а не заполнять предположением.">
+              <div class="question-head"><h3>Что делать, если в документе нет нужной информации?</h3><div class="question-index">6</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q6" value="a"><span>Попросить ChatGPT предположить и использовать это как факт</span></label>
+                <label class="choice"><input type="radio" name="q6" value="b"><span>Зафиксировать, что данных недостаточно</span></label>
+                <label class="choice"><input type="radio" name="q6" value="c"><span>Оставить вывод без пояснения</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="c" data-explanation="Чем выше последствия ошибки, тем важнее ручная проверка цифр, дат, сроков и ключевых фактов.">
+              <div class="question-head"><h3>Какие данные нужно особенно проверять?</h3><div class="question-index">7</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q7" value="a"><span>Только орфографию</span></label>
+                <label class="choice"><input type="radio" name="q7" value="b"><span>Только длину текста</span></label>
+                <label class="choice"><input type="radio" name="q7" value="c"><span>Цифры, сроки, даты и важные факты</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="question" data-answer="a" data-explanation="Надежная работа с ИИ строится итеративно: получить результат, уточнить его и проверить важные места.">
+              <div class="question-head"><h3>Какой подход правильнее?</h3><div class="question-index">8</div></div>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="q8" value="a"><span>Получить результат, уточнить и проверить</span></label>
+                <label class="choice"><input type="radio" name="q8" value="b"><span>Всегда принимать первый ответ</span></label>
+                <label class="choice"><input type="radio" name="q8" value="c"><span>Всегда писать максимально длинный промпт</span></label>
+              </div>
+              <div class="feedback"></div>
+            </div>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" type="button" id="checkQuiz">Проверить ответы</button>
+            <button class="btn btn-secondary" type="button" id="resetQuiz">Пройти заново</button>
+          </div>
+
+          <div class="quiz-result" id="quizResult" aria-live="polite">
+            <div class="score-ring" id="scoreRing"><strong id="resultScore">0/8</strong></div>
+            <div class="result-copy"><h3 id="resultTitle">Результат</h3><p id="resultMessage"></p></div>
+          </div>
+
+          <div class="finish-card">
+            <h3>Главное, что нужно запомнить</h3>
+            <p><strong>Поставьте задачу → дайте контекст и данные → задайте формат → уточните результат → проверьте важные факты.</strong><br>ИИ помогает подготовить результат. Финальную ответственность несет человек.</p>
+          </div>
+        </div>
+
+        <div class="lesson-footer">
+          <button class="lesson-done" data-complete="13">Отметить курс пройденным</button>
+          <div class="lesson-next"><a href="#main">Вернуться наверх ↑</a></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>ChatGPT 101 для сотрудников ТЛЦ</strong><br>
+        Внутренний обучающий материал. Версия 3.0. Курс рассчитан на начальный уровень и практическое применение в ежедневной работе.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Скопировано</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const STORAGE_KEY = 'tlc_chatgpt101_progress_v2';
+  const LAST_KEY = 'tlc_chatgpt101_last_v2';
+  const TOTAL_MODULES = 13;
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+  /* Theme */
+  const THEME_KEY = 'tlc_chatgpt101_theme_v3';
+  const themeToggle = $('#themeToggle');
+  const themeMeta = $('#themeColorMeta');
+
+  function currentTheme() {
+    return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+  }
+
+  function syncThemeUI() {
+    const dark = currentTheme() === 'dark';
+    themeToggle.setAttribute('aria-pressed', String(dark));
+    themeToggle.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить темную тему');
+    themeToggle.setAttribute('title', dark ? 'Светлая тема' : 'Темная тема');
+    if (themeMeta) themeMeta.setAttribute('content', dark ? '#0b1020' : '#f4f7fb');
+  }
+
+  function setTheme(theme, persist = true) {
+    const normalized = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = normalized;
+    if (persist) {
+      try { localStorage.setItem(THEME_KEY, normalized); } catch (_) {}
+    }
+    syncThemeUI();
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    showToast(next === 'dark' ? 'Темная тема включена' : 'Светлая тема включена');
+  });
+
+  syncThemeUI();
+
+  const toast = $('#toast');
+  let toastTimer = null;
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Скопировано');
+    } catch (_) {
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+      showToast('Скопировано');
+    }
+  }
+
+  /* Copy buttons */
+  $$('.copy-btn').forEach(btn => {
+    if (btn.id === 'copyBuilder') return;
+    btn.addEventListener('click', () => {
+      const prompt = btn.closest('.prompt');
+      if (!prompt) return;
+      const pre = $('pre', prompt);
+      if (pre) copyText(pre.innerText.trim());
+    });
+  });
+
+  $$('[data-copy-text]').forEach(btn => {
+    btn.addEventListener('click', () => copyText(btn.dataset.copyText));
+  });
+
+  /* Accordions */
+  $$('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.accordion').classList.toggle('open'));
+  });
+
+  /* Prompt builder */
+  const builderFields = ['bTask','bContext','bData','bResult'].map(id => document.getElementById(id));
+  const builderOutput = $('#builderOutput');
+  const buildPrompt = () => {
+    const [task, context, data, result] = builderFields.map(el => el.value.trim());
+    if (![task, context, data, result].some(Boolean)) {
+      builderOutput.textContent = 'Заполните поля слева, и здесь появится готовый запрос.';
+      return;
+    }
+    builderOutput.textContent = [
+      task ? `Задача:\n${task}` : '',
+      context ? `Контекст:\n${context}` : '',
+      data ? `Данные:\n${data}` : '',
+      result ? `Результат:\n${result}` : ''
+    ].filter(Boolean).join('\n\n');
+  };
+  builderFields.forEach(el => el.addEventListener('input', buildPrompt));
+  $('#copyBuilder').addEventListener('click', () => {
+    const text = builderOutput.innerText.trim();
+    if (!text || text.startsWith('Заполните')) return showToast('Сначала заполните поля');
+    copyText(text);
+  });
+
+  /* Output format picker */
+  const formats = {
+    table: {
+      title: 'Таблица сравнения',
+      text: 'Представь результат таблицей со столбцами:\nПоставщик | Стоимость | Срок | Дополнительные расходы | Риски | Комментарий.'
+    },
+    brief: {
+      title: 'Краткий вывод',
+      text: 'Дай ответ в структуре:\n1. Краткий вывод в 2-3 предложениях.\n2. Три главных факта.\n3. Что требует уточнения.'
+    },
+    checklist: {
+      title: 'Чек-лист',
+      text: 'Преврати результат в пошаговый чек-лист.\nРаздели на: подготовка → выполнение → финальная проверка.'
+    },
+    decision: {
+      title: 'Для руководителя',
+      text: 'Подготовь краткую справку для руководителя:\n1. Ситуация.\n2. Варианты.\n3. Риски.\n4. Рекомендуемое действие.\n5. Что нужно решить.'
+    }
+  };
+  $$('[data-format]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('[data-format]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const item = formats[btn.dataset.format];
+      $('#formatTitle').textContent = item.title;
+      $('#formatText').textContent = item.text;
+    });
+  });
+
+  /* Use-case filtering */
+  $$('#usecaseFilters [data-usecase]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $$('#usecaseFilters [data-usecase]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const category = btn.dataset.usecase;
+      $$('#usecaseGrid .usecase-card').forEach(card => {
+        const visible = category === 'all' || card.dataset.category === category;
+        card.classList.toggle('hidden', !visible);
+      });
+    });
+  });
+
+  /* Progress */
+  function getProgress() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      return Array.isArray(raw) ? raw.filter(n => Number.isInteger(n) && n >= 1 && n <= TOTAL_MODULES) : [];
+    } catch (_) {
+      return [];
+    }
+  }
+  let completed = getProgress();
+
+  function updateProgress() {
+    completed = [...new Set(completed)].sort((a,b) => a-b);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+    const pct = Math.round((completed.length / TOTAL_MODULES) * 100);
+    $('#progressFill').style.width = pct + '%';
+    $('#progressText').textContent = `${completed.length} из ${TOTAL_MODULES} · ${pct}%`;
+
+    $$('.lesson-done').forEach(btn => {
+      const module = Number(btn.dataset.complete);
+      const done = completed.includes(module);
+      btn.classList.toggle('done', done);
+      btn.textContent = done ? (module === 13 ? 'Курс пройден ✓' : 'Раздел пройден ✓') : (module === 13 ? 'Отметить курс пройденным' : 'Отметить пройденным');
+    });
+
+    $$('.nav-link').forEach(link => {
+      link.classList.toggle('done', completed.includes(Number(link.dataset.module)));
+    });
+  }
+
+  $$('.lesson-done').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const module = Number(btn.dataset.complete);
+      if (completed.includes(module)) completed = completed.filter(x => x !== module);
+      else completed.push(module);
+      updateProgress();
+    });
+  });
+
+  $('#resetProgressBtn').addEventListener('click', () => {
+    if (!confirm('Сбросить весь прогресс курса?')) return;
+    completed = [];
+    localStorage.removeItem(LAST_KEY);
+    updateProgress();
+    showToast('Прогресс сброшен');
+  });
+
+  /* Navigation + active state */
+  const lessons = $$('.lesson');
+  const navLinks = $$('.nav-link');
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    const id = visible.target.id;
+    const module = Number(visible.target.dataset.module);
+    localStorage.setItem(LAST_KEY, String(module));
+    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
+  }, { rootMargin: '-25% 0px -58% 0px', threshold: [0.05, 0.2, 0.5] });
+  lessons.forEach(section => observer.observe(section));
+
+  $('#continueBtn').addEventListener('click', () => {
+    const last = Number(localStorage.getItem(LAST_KEY) || '1');
+    const target = document.getElementById(`module${Math.min(Math.max(last,1),TOTAL_MODULES)}`);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  $('#mobileJump').addEventListener('change', e => {
+    const target = document.getElementById(e.target.value);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    e.target.value = '';
+  });
+
+  /* Quiz */
+  const questions = $$('.question');
+  $('#checkQuiz').addEventListener('click', () => {
+    let score = 0;
+    let answered = 0;
+
+    questions.forEach(q => {
+      q.classList.remove('correct', 'wrong');
+      const selected = $('input[type="radio"]:checked', q);
+      const feedback = $('.feedback', q);
+      if (!selected) {
+        feedback.textContent = 'Выберите вариант ответа.';
+        return;
+      }
+      answered++;
+      const correct = selected.value === q.dataset.answer;
+      if (correct) score++;
+      q.classList.add(correct ? 'correct' : 'wrong');
+      feedback.textContent = (correct ? 'Верно. ' : 'Неверно. ') + q.dataset.explanation;
+    });
+
+    const result = $('#quizResult');
+    result.classList.add('show');
+
+    if (answered < questions.length) {
+      $('#scoreRing').style.setProperty('--score', Math.round((answered/questions.length)*100));
+      $('#resultScore').textContent = `${answered}/8`;
+      $('#resultTitle').textContent = 'Ответьте на все вопросы';
+      $('#resultMessage').textContent = `Сейчас заполнено ${answered} из ${questions.length}. После этого можно будет посчитать итоговый балл.`;
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const pct = Math.round(score / questions.length * 100);
+    $('#scoreRing').style.setProperty('--score', pct);
+    $('#resultScore').textContent = `${score}/8`;
+
+    if (score === 8) {
+      $('#resultTitle').textContent = 'Отлично';
+      $('#resultMessage').textContent = 'Вы уверенно освоили базовые принципы. Можно применять их в ежедневной работе.';
+    } else if (score >= 6) {
+      $('#resultTitle').textContent = 'Хороший результат';
+      $('#resultMessage').textContent = 'База освоена. Посмотрите объяснения у вопросов, где была ошибка, и попробуйте один реальный сценарий ТЛЦ.';
+    } else if (score >= 4) {
+      $('#resultTitle').textContent = 'Нужно немного закрепить';
+      $('#resultMessage').textContent = 'Повторите модули 3, 9, 10 и 11: постановка задачи, ограничения, проверка и безопасность.';
+    } else {
+      $('#resultTitle').textContent = 'Рекомендуем пройти курс еще раз';
+      $('#resultMessage').textContent = 'Особенно внимательно посмотрите формулу запроса, работу с файлами и блок проверки результата.';
+    }
+
+    if (score >= 6 && !completed.includes(13)) {
+      completed.push(13);
+      updateProgress();
+    }
+
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  $('#resetQuiz').addEventListener('click', () => {
+    $$('#quiz input[type="radio"]').forEach(input => input.checked = false);
+    questions.forEach(q => {
+      q.classList.remove('correct', 'wrong');
+      $('.feedback', q).textContent = '';
+    });
+    $('#quizResult').classList.remove('show');
+  });
+
+  /* Misc */
+  $('#printBtn').addEventListener('click', () => window.print());
+  updateProgress();
+})();
+</script>
+</body>
+</html>
