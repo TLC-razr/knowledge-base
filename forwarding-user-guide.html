@@ -1,0 +1,127 @@
+<!doctype html><html lang="ru" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ТЛЦ | Переадресация: инструкция по ролям</title><style>
+:root{--bg:#eef3f9;--surface:#fff;--surface2:#f7f9fc;--ink:#172540;--muted:#536581;--line:#d7e0ec;--primary:#155db8;--navy:#163774;--cyan:#187faa;--green:#187451;--soft:#edf4ff;--amber:#8d5c00;--warm:#fff8e8;--shadow:0 12px 30px #263b5e12;--offset:165px;--max:1220px}
+html[data-theme=dark]{--bg:#101b2d;--surface:#18263c;--surface2:#20314a;--ink:#e7eefb;--muted:#b6c6df;--line:#3a4c67;--primary:#91bdff;--navy:#a9c7ff;--cyan:#7bd1ec;--green:#8fdbc0;--soft:#263d60;--amber:#f0c572;--warm:#3c3323;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:17px/1.6 'Segoe UI',Arial,sans-serif;color:var(--ink);background:var(--bg)}.wrap{max-width:var(--max);margin:auto;padding:0 28px}a{color:var(--primary);text-underline-offset:3px}button,select,input{font:inherit}button,a.button,select{min-height:44px}button{cursor:pointer}button,a.button{border:1px solid var(--line);border-radius:12px;padding:9px 14px;background:var(--surface);color:var(--muted);font-size:14px;font-weight:700;text-decoration:none}button:hover,a.button:hover{background:var(--soft)}button:active{transform:translateY(1px)}:focus-visible{outline:3px solid var(--primary);outline-offset:3px}.skip-link{position:fixed;top:-100px;left:12px;z-index:100;background:var(--surface);padding:12px}.skip-link:focus{top:10px}header{background:var(--surface);border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:14px;padding:27px 0 20px}.logo{padding:9px 13px;border-radius:11px;background:#0e58b6;color:white;font-size:20px;font-weight:800}.brand span:last-child{color:var(--muted);font-size:14px;font-weight:650}.hero{background:var(--surface)}.hero .wrap{padding-top:16px;padding-bottom:32px}.eyebrow{font-size:13px;letter-spacing:.12em;font-weight:800;text-transform:uppercase;color:var(--cyan);margin:0 0 16px}h1{font-size:clamp(36px,4.7vw,60px);line-height:1.08;letter-spacing:-.035em;max-width:1080px;margin:0 0 20px}h2{font-size:29px;line-height:1.25;letter-spacing:-.02em;margin:0}h3{font-size:22px;line-height:1.35;margin:28px 0 12px}.lead{font-size:20px;color:var(--muted);max-width:990px;margin:0 0 21px}.chips{display:flex;flex-wrap:wrap;gap:9px}.chip{background:var(--surface2);border:1px solid var(--line);padding:8px 13px;border-radius:99px;font-size:13px;font-weight:650}.rolebar{position:sticky;top:0;z-index:30;background:var(--bg);border-block:1px solid var(--line)}.bar-inner{padding:11px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.role-dock{display:flex;align-items:center;gap:12px;min-width:0}.role-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--muted);white-space:nowrap}.roles{display:flex;gap:7px;flex-wrap:wrap}.roles button{display:flex;align-items:center;gap:8px;border-radius:99px;padding:7px 14px}.dot{width:9px;height:9px;border-radius:50%;background:#7d8da7}.roles button[data-role-button=hr] .dot{background:#2397d4}.roles button[data-role-button=employee] .dot{background:#305ea8}.roles button[data-role-button=manager] .dot{background:#927235}.roles button[data-role-button=admin] .dot{background:#1b8760}.roles button[aria-pressed=true]{background:#0e58b6;color:white;border-color:#0e58b6}.roles button[aria-pressed=true] .dot{background:white}.tools{margin-left:auto;display:flex;gap:8px}.topics{border-top:1px solid var(--line);display:flex;gap:3px;overflow:auto;padding:8px 0}.topics a{white-space:nowrap;text-decoration:none;padding:6px 10px;font-size:13px;font-weight:650;border-radius:8px;color:var(--muted)}.topics a:hover,.topics a[aria-current=true]{background:var(--soft);color:var(--primary)}.mobile-nav{display:none}main.wrap{padding-top:25px;padding-bottom:60px}.section{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);margin-bottom:24px;padding:26px;scroll-margin-top:var(--offset)}.section-head{margin-bottom:20px}.section-title{display:flex;gap:12px;align-items:center}.num{min-width:34px;height:34px;border-radius:10px;background:#153573;color:white;display:grid;place-items:center;font-size:16px;font-weight:800}.section-sub{margin:9px 0 0;color:var(--muted);font-size:16px}.role-summary{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.summary-main{border:1px solid var(--line);border-left:5px solid var(--primary);border-radius:16px;padding:22px;background:var(--surface)}.kicker{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:800;text-transform:uppercase}.summary-main h3{margin:7px 0 10px;font-size:26px}.summary-main p{color:var(--muted);margin:0 0 18px}.primary{display:inline-block;background:#0e58b6!important;color:white!important;border-color:#0e58b6!important}.summary-side{background:var(--surface2);border:1px solid var(--line);border-radius:16px;padding:20px}.summary-side h3{font-size:17px;margin:0 0 10px}.summary-side p{font-size:15px;margin:8px 0;color:var(--muted)}.summary-side .important{font-weight:650;color:var(--ink)}.role-match{border:2px solid var(--primary)}.role-match .section-head:after{content:'Ваша роль';display:inline-block;margin-top:12px;padding:3px 9px;border-radius:99px;font-size:12px;font-weight:700;color:var(--primary);background:var(--soft)}p{margin:13px 0}li{margin:9px 0}ul,ol{padding-left:23px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin:20px 0}table{width:100%;border-collapse:collapse;font-size:15px}th,td{padding:14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);min-width:135px}th{background:var(--surface2);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}tr:last-child td{border:0}.topic-body>p:has(>strong:only-child){padding:15px 18px;border-left:4px solid var(--primary);background:var(--soft);border-radius:0 10px 10px 0}.topic-body>ol{list-style:none;padding:0;counter-reset:action}.topic-body>ol>li{counter-increment:action;position:relative;padding:13px 16px 13px 53px;background:var(--surface2);border:1px solid var(--line);border-radius:13px;margin:10px 0}.topic-body>ol>li:before{content:counter(action);position:absolute;left:16px;top:14px;color:var(--primary);font-weight:800}#section-5 .topic-body{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}#section-5 .topic-body>*{grid-column:1 / -1}.checklist{display:grid;gap:10px}.checklist label{display:flex;gap:12px;padding:13px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;cursor:pointer}.checklist input{width:19px;height:19px;flex-shrink:0;margin-top:4px;accent-color:var(--primary)}.small{font-size:14px;color:var(--muted)}footer{font-size:14px;color:var(--muted);padding:0 5px}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:1050px){.tools{margin-left:0}.role-summary{grid-template-columns:1fr 1fr}.role-dock{flex-wrap:wrap}.bar-inner{gap:8px}}
+@media(max-width:700px){.wrap{padding:0 15px}.brand{padding:17px 0 14px}.brand span:last-child{font-size:12px}.hero .wrap{padding-bottom:25px}h1{font-size:36px}.lead{font-size:17px}.chip{font-size:12px}.bar-inner{padding:8px 0;display:block}.role-dock{display:block}.role-label{font-size:10px}.roles{flex-wrap:nowrap;overflow:auto;padding:3px 0 5px;gap:5px}.roles button{white-space:nowrap;min-height:40px;padding:6px 10px;font-size:12px}.tools{position:absolute;right:15px;top:4px}.tools button{min-height:25px;font-size:11px;padding:3px 7px;border-radius:7px}.topics{display:none}.mobile-nav{display:block;padding-bottom:8px}.mobile-nav select{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);padding:8px;min-height:42px;font-size:14px}.role-summary{grid-template-columns:1fr}.section{padding:20px 16px;border-radius:18px}.section-title{align-items:flex-start}h2{font-size:25px}.section-sub{font-size:15px}.summary-main{padding:18px}.summary-main h3{font-size:23px}.summary-side{padding:16px}.topic-body{font-size:16px}main.wrap{padding-top:16px}.num{min-width:30px;height:30px;font-size:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media print{:root,html[data-theme=dark]{--bg:white;--surface:white;--surface2:#f6f6f6;--ink:#111;--muted:#333;--line:#ccc;--primary:#174c83;--soft:#f5f5f5;--shadow:none}.rolebar,.skip-link,.button{display:none!important}.wrap{max-width:none;padding:0}header{border:0}.brand{padding:0}.hero .wrap{padding:15px 0}h1{font-size:28pt}.lead{font-size:13pt}body{font-size:11pt}.section{box-shadow:none;padding:16px;margin-bottom:15px}.section-head{break-after:avoid}.section h2{font-size:19pt}tr{break-inside:avoid}.table-wrap{overflow:visible}td,th{min-width:0;padding:7px;font-size:10pt}.role-match{border:1px solid var(--line)}.role-match .section-head:after{display:none}.role-summary{display:block}.summary-side{margin-top:12px}}
+</style></head><body><a href="#main" class="skip-link">Перейти к содержанию</a><header><div class="wrap"><div class="brand"><span class="logo">ТЛЦ</span><span>Инструкции для сотрудников</span></div></div></header><div class="hero"><div class="wrap"><p class="eyebrow">Битрикс24 · Почта · Телефония</p><h1>Переадресация на время отсутствия: инструкция по ролям</h1><p class="lead">Кто заполняет данные, кто настраивает переадресацию и когда её снимают. Выберите свою роль, чтобы увидеть ваши действия.</p><div class="chips"><span class="chip">Данные заполняет сотрудник или руководитель</span><span class="chip">Настройку выполняют сисадмины</span><span class="chip">Обновлено 28.09.2026</span></div></div></div><div class="rolebar bar"><div class="wrap"><div class="bar-inner"><div class="role-dock"><span class="role-label">Моя роль</span><div class="roles"><button data-role-button="all" aria-pressed="true"><span class="dot" aria-hidden="true"></span>Все</button><button data-role-button="hr" aria-pressed="false"><span class="dot" aria-hidden="true"></span>HR</button><button data-role-button="employee" aria-pressed="false"><span class="dot" aria-hidden="true"></span>Сотрудник</button><button data-role-button="manager" aria-pressed="false"><span class="dot" aria-hidden="true"></span>Руководитель</button><button data-role-button="admin" aria-pressed="false"><span class="dot" aria-hidden="true"></span>Сисадмин</button></div></div><div class="tools"><button id="theme" aria-pressed="false">Тёмная тема</button><button id="print">Печать</button></div></div><nav class="topics" aria-label="Темы инструкции"><a href="#route">Ваш маршрут</a><a href="#section-2">Как всё работает</a><a href="#section-3">Действия HR</a><a href="#section-4">Кому приходит задание</a><a href="#section-5">Что заполнить</a><a href="#section-6">Задачи сисадминов</a><a href="#section-7">Если возникли вопросы</a><a href="#check">Проверка</a></nav><div class="mobile-nav"><label for="jump" class="sr-only">Выбрать тему</label><select id="jump"><option value="route">Ваш маршрут</option><option value="section-2">Как всё работает</option><option value="section-3">Действия HR</option><option value="section-4">Кому приходит задание</option><option value="section-5">Что заполнить</option><option value="section-6">Задачи сисадминов</option><option value="section-7">Если возникли вопросы</option><option value="check">Проверка</option></select></div></div></div><main class="wrap" id="main"><section class="section" id="route" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">✓</span><h2>Ваш маршрут</h2></div><p class="section-sub">При выборе роли здесь появится ваш участок работы. Все темы остаются доступны ниже.</p></div><div class="role-summary"><div class="summary-main"><div class="kicker" id="role-kicker">Весь процесс</div><h3 id="role-title">От записи HR до снятия переадресации</h3><p id="role-description">HR регистрирует отсутствие. Сотрудник или руководитель заполняет данные. Сисадмины получают две задачи: на настройку и снятие.</p><a id="role-action" class="button primary" href="#section-2">Посмотреть порядок работы</a></div><div class="summary-side"><h3>Что важно помнить</h3><p class="important">Заполнение задания не включает переадресацию. Её настраивают сисадмины.</p><p>Проверьте получателя и даты перед сохранением.</p><p>Задача на снятие приходит заранее. Отключать нужно в срок, указанный в задаче.</p></div></div><p class="sr-only" id="role-status" role="status"></p></section><section class="section" id="section-2" data-roles="" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">1</span><h2>Как всё работает</h2></div><p class="section-sub">Общий порядок: от записи об отсутствии до снятия переадресации.</p></div><div class="topic-body"><p>Чтобы письма и звонки не оставались без ответа, пока сотрудник отсутствует. HR сообщает об отсутствии, сотрудник или руководитель указывает, кому передавать обращения, а сисадмины настраивают переадресацию и затем снимают её.</p>
+<p><strong>Ваша задача: заполнить данные в полученном задании. Настройки почты и телефонии выполнят сисадмины.</strong></p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Таблица, прокручивается по горизонтали"><table>
+<thead>
+<tr>
+<th>Когда</th>
+<th>Кто</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Стало известно об отсутствии</td>
+<td>HR</td>
+<td>Указывает сотрудника и даты в Битрикс24. Информация попадает в график отсутствий</td>
+</tr>
+<tr>
+<td>После регистрации отсутствия</td>
+<td>Битрикс24</td>
+<td>Проверяет даты и при необходимости выдаёт задание на заполнение данных</td>
+</tr>
+<tr>
+<td>Пришло задание</td>
+<td>Сотрудник или руководитель</td>
+<td>Указывает, куда направлять письма и звонки, проверяет даты и сохраняет данные</td>
+</tr>
+<tr>
+<td>Данные заполнены</td>
+<td>Сисадмины</td>
+<td>Получают первую задачу и настраивают переадресацию на указанный период</td>
+</tr>
+<tr>
+<td>За один рабочий день до окончания переадресации</td>
+<td>Сисадмины</td>
+<td>Получают вторую задачу на снятие переадресации</td>
+</tr>
+</tbody></table></div>
+<h3>Когда приходит задание</h3>
+<p>Задание нужно, если между датой начала и датой окончания отсутствия <strong>три календарных дня или больше</strong>. При меньшем сроке отсутствие останется в графике, но задание и задачи на переадресацию не появятся.</p>
+<p>Например, с 17 до 20 сентября: задание придёт. С 17 до 19 сентября: не придёт. Примеры приведены для одинакового времени начала и окончания.</p>
+</div></section><section class="section" id="section-3" data-roles="hr" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">2</span><h2>Действия HR</h2></div><p class="section-sub">Зарегистрируйте отсутствие. Дальше процесс сам выдаст нужное задание.</p></div><div class="topic-body"><ol>
+<li>Создайте запись об отсутствии в разделе процессов в ленте Битрикс24.</li>
+<li>Выберите сотрудника и укажите вид и даты отсутствия.</li>
+<li>Проверьте данные и сохраните запись.</li>
+<li>Убедитесь, что информация появилась в графике отсутствий.</li>
+</ol>
+<p>Дальше задание на заполнение данных будет выдано автоматически, если срок отсутствия подходит. HR не нужно вручную выбирать, кто его получит.</p>
+</div></section><section class="section" id="section-4" data-roles="" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">3</span><h2>Кому приходит задание</h2></div><p class="section-sub">Кто указывает данные для настройки почты и звонков.</p></div><div class="topic-body"><ul>
+<li><strong>Самому сотруднику</strong>, если он включён в список тех, кто самостоятельно заполняет данные для переадресации.</li>
+<li><strong>Руководителю</strong>, если сотрудник не входит в этот список.</li>
+<li><strong>Резервному ответственному</strong>, если руководитель не найден или отсутствует в день выдачи задания.</li>
+</ul>
+<p>Открыв задание, сначала проверьте, для какого сотрудника нужно заполнить данные. Если оно пришло вам ошибочно, сообщите ответственному за процесс.</p>
+<h3>Если сотрудник заполнит данные сам</h3>
+<p>Вы можете передать полученное задание сотруднику, который будет отсутствовать. Используйте возможность передачи задания и выберите этого сотрудника. Он сам укажет данные для переадресации, проверит даты и сохранит задание.</p>
+</div></section><section class="section" id="section-5" data-roles="employee manager" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">4</span><h2>Что заполнить</h2></div><p class="section-sub">Проверьте данные, укажите получателей и сохраните задание.</p></div><div class="topic-body"><p>Откройте задание <strong>«Запрос дополнительной информации»</strong>. Часть данных уже заполнена, проверьте их перед сохранением.</p>
+<h3>Почта</h3>
+<ul>
+<li><strong>С какой почты пересылать:</strong> ящик отсутствующего сотрудника.</li>
+<li><strong>На какую почту пересылать:</strong> ящик того, кто будет принимать письма.</li>
+<li><strong>Текст автоответа:</strong> что должен увидеть отправитель, если автоответ нужен.</li>
+</ul>
+<h3>Звонки</h3>
+<ul>
+<li><strong>С какого номера переводить:</strong> рабочий номер отсутствующего сотрудника.</li>
+<li><strong>На какой номер переводить:</strong> номер того, кто будет принимать звонки.</li>
+</ul>
+<h3>Даты</h3>
+<p>Даты уже подставлены из записи об отсутствии. Если переадресация нужна на другой период, измените их в задании.</p>
+<p><strong>Изменение этих дат относится к переадресации. Если изменилось само отсутствие, сообщите об этом HR.</strong></p>
+<h3>Завершение задания</h3>
+<ol>
+<li>Для нужного вида переадресации укажите оба значения: откуда и куда направлять обращения.</li>
+<li>Проверьте получателя и даты. Если адресов или номеров несколько, поясните, какой с каким связан.</li>
+<li>Нажмите <strong>«Сохранить»</strong>. По заполненным данным будет создана задача сисадминам.</li>
+</ol>
+<h3>Если переадресация не нужна</h3>
+<p>Не заполняйте почту получателя, номер получателя и текст автоответа. Нажмите <strong>«Сохранить»</strong>.</p>
+<p>Уже подставленные почту и номер отсутствующего сотрудника, а также даты можно оставить. Очищать их не нужно. Если получатели и автоответ не заполнены, задачи сисадминам не создаются.</p>
+</div></section><section class="section" id="section-6" data-roles="admin" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">5</span><h2>Задачи сисадминов</h2></div><p class="section-sub">Две задачи: сначала настроить, затем снять переадресацию.</p></div><div class="topic-body"><h3>Первая задача: настроить</h3>
+<p>Проверьте, откуда и куда нужно пересылать письма или звонки, и на какой период. Если данные неполные, уточните их у заполнившего задание. Настройте переадресацию по срокам задачи, проверьте её работу и укажите результат в задаче.</p>
+<h3>Вторая задача: снять</h3>
+<p>Задача приходит <strong>за один рабочий день до окончания переадресации</strong>. Например, если окончание в понедельник, задача придёт в пятницу, если она рабочая.</p>
+<p><strong>Задача приходит заранее. Снимайте переадресацию в срок, указанный в задаче.</strong> Если срок неясен или противоречит периоду отсутствия, уточните его до отключения.</p>
+<p>После снятия проверьте результат и отметьте выполнение задачи.</p>
+</div></section><section class="section" id="section-7" data-roles="" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">6</span><h2>Если возникли вопросы</h2></div><p class="section-sub">К кому обратиться при изменениях или ошибке.</p></div><div class="topic-body"><div class="table-wrap" tabindex="0" role="region" aria-label="Таблица, прокручивается по горизонтали"><table>
+<thead>
+<tr>
+<th>Ситуация</th>
+<th>Что сделать</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Изменились даты отсутствия</td>
+<td>Сообщите HR</td>
+</tr>
+<tr>
+<td>Нужно изменить получателя или период, а задача уже создана</td>
+<td>Напишите исполнителю задачи и укажите новые данные</td>
+</tr>
+<tr>
+<td>Задание пришло не тому человеку</td>
+<td>Сообщите ответственному за процесс</td>
+</tr>
+<tr>
+<td>Задания нет или появилась ошибка</td>
+<td>Передайте ответственному за процесс ссылку на запись и кратко опишите ситуацию</td>
+</tr>
+</tbody></table></div>
+<p>Не создавайте повторную запись об отсутствии для обхода ошибки. Сначала уточните состояние уже запущенного процесса.</p>
+</div></section><section class="section" id="check" tabindex="-1"><div class="section-head"><div class="section-title"><span class="num">7</span><h2>Перед сохранением задания</h2></div></div><div class="checklist"><label><input type="checkbox">Выбран правильный сотрудник</label><label><input type="checkbox">Если переадресация нужна, указано, откуда и куда пересылать письма или звонки</label><label><input type="checkbox">Проверены даты начала и окончания переадресации</label></div><p class="small">Это памятка для самопроверки. Отметки не отправляются в Битрикс24.</p></section><footer>Если возникла проблема, передайте ответственному за процесс ссылку на запись в Битрикс24 и опишите ситуацию.</footer></main><script>
+const THEME_KEY='tlc_forwarding_user_topics_theme_v1';
+function theme(v){document.documentElement.dataset.theme=v;document.getElementById('theme').textContent=v==='dark'?'Светлая тема':'Тёмная тема';document.getElementById('theme').setAttribute('aria-pressed',String(v==='dark'));try{localStorage.setItem(THEME_KEY,v)}catch{}}
+let stored;try{stored=localStorage.getItem(THEME_KEY)}catch{}theme(stored||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));document.getElementById('theme').onclick=()=>theme(document.documentElement.dataset.theme==='dark'?'light':'dark');document.getElementById('print').onclick=()=>window.print();
+const roles={all:['Весь процесс','От записи HR до снятия переадресации','HR регистрирует отсутствие. Сотрудник или руководитель заполняет данные. Сисадмины получают две задачи: на настройку и снятие.','section-2','Посмотреть порядок работы'],hr:['HR','Зарегистрируйте отсутствие','Выберите сотрудника, укажите даты и сохраните запись. Проверьте, что отсутствие появилось в графике. Дальше задание будет выдано автоматически, если срок подходит.','section-3','Открыть действия HR'],employee:['Сотрудник','Заполните полученное задание','Если задание пришло вам, укажите, кому направлять почту и звонки. Проверьте даты и нажмите «Сохранить». Настройку выполнят сисадмины.','section-5','Перейти к заполнению'],manager:['Руководитель','Укажите, кто примет обращения','Проверьте, для какого сотрудника пришло задание. Заполните данные сами или передайте задание этому сотруднику, чтобы он всё заполнил.','section-5','Перейти к заполнению'],admin:['Сисадмин','Настройте, затем снимите переадресацию','В первой задаче проверьте данные и настройте переадресацию. Вторая придёт заранее: снимите настройки в срок, указанный в задаче.','section-6','Открыть задачи сисадмина']};
+document.querySelectorAll('[data-role-button]').forEach(b=>b.onclick=()=>{const r=b.dataset.roleButton,d=roles[r];document.querySelectorAll('[data-role-button]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelectorAll('[data-roles]').forEach(x=>x.classList.toggle('role-match',r!=='all'&&x.dataset.roles.split(' ').includes(r)));document.getElementById('role-kicker').textContent=d[0];document.getElementById('role-title').textContent=d[1];document.getElementById('role-description').textContent=d[2];const a=document.getElementById('role-action');a.href='#'+d[3];a.textContent=d[4];document.getElementById('role-status').textContent='Выбрана роль: '+d[0]+'. Описание действий обновлено.'});
+const bar=document.querySelector('.bar');const resize=()=>document.documentElement.style.setProperty('--offset',(bar.getBoundingClientRect().height+20)+'px');new ResizeObserver(resize).observe(bar);resize();
+document.getElementById('jump').onchange=e=>{location.hash=e.target.value;document.getElementById(e.target.value).focus({preventScroll:true})};
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.topics a').forEach(a=>a.setAttribute('aria-current',String(a.hash==='#'+e.target.id)));document.getElementById('jump').value=e.target.id}})},{rootMargin:'-20% 0px -60% 0px'});document.querySelectorAll('main section').forEach(s=>observer.observe(s));
+</script></body></html>
