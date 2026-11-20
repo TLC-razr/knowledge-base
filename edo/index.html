@@ -74,7 +74,7 @@
     .hero-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 25px; }
     .hero-links a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 12px; align-items: center; padding: 12px 16px; border: 1px solid var(--hero-line); border-radius: var(--radius); background: var(--hero-card); color: var(--hero-text); text-decoration: none; }
     .hero-links a:hover { background: #ffffff20; }
-    .hero-related { margin-top: 16px; font-size: 14px; }
+    .hero-related { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 16px; font-size: 14px; }
     .hero-related a { color: var(--hero-sub); }
     .hero-related a:focus-visible { outline-color: var(--hero-sub); }
     .hero-links a:focus-visible { outline-color: var(--hero-sub); }
@@ -212,7 +212,10 @@
         <a href="#accounting"><strong>Бухгалтерии</strong><small>УПД, номенклатура и отражение в учёте</small><span class="arrow" aria-hidden="true">↘</span></a>
         <a href="#lead"><strong>Руководителям</strong><small>Очередь, права и спорные документы</small><span class="arrow" aria-hidden="true">↘</span></a>
       </nav>
-      <p class="hero-related"><a href="../contracts/#overview">Инструкция по согласованию договоров</a></p>
+      <nav class="hero-related" aria-label="Связанные инструкции">
+        <a href="https://outline.t-lc.ru/s/3281d0fc-93cd-403d-aa4a-fce1c8adfad6">Полная инструкция находится в Outline</a>
+        <a href="../contracts/#overview">Инструкция по согласованию договоров</a>
+      </nav>
     </div>
   </header>
 
